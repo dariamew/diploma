@@ -1,0 +1,9 @@
+<h3 class ="list-title">С нашим аккаунтом у Вас будут следующие возможности:</h3>
+<div class = "list-container">
+  <div class ="list-style" *ngFor = "let opportunity of opportunities">
+  <h3 class = "list-header"> {{opportunity.title}}</h3>
+  <p class = "list-element" *ngFor = "let listElement of opportunity.list">
+     {{listElement}}
+  </p>
+  </div>
+</div>
