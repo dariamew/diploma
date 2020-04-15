@@ -5,41 +5,41 @@
         <label>Студент</label> 
             <input type="radio" name="registrationState" id="organizationChoice" value="1" (change)="changeHandler(1)">
         <label>Представитель организации</label> <br>
-        <form action="" *ngIf="registrationState == 0">
+        <form *ngIf="registrationState == 0" [formGroup]="checkoutForm" (ngSubmit)="">
             <div class="input-container">
                 <label for="fio">ФИО</label>
-                    <input id="fio">
+                    <input id="fio" formControlName="fio">
                 <label for="faculty">Направление</label>
-                    <input id="faculty">
+                    <input id="faculty" formControlName="faculty">
                 <label for="group">Номер группы</label>
-                    <input id="group">
+                    <input id="group" formControlName="group">
                 <label for="tel">Телефон</label>
-                    <input id="tel">
+                    <input id="tel" formControlName="tel">
                 <label for="portfolio">Портфолио</label>
-                    <input id="portfolio">
+                    <input id="portfolio" formControlName="portfolio">
                 <label for="contacts">Соц.сети</label>
-                    <input id="contacts">
+                    <input id="contacts" formControlName="contacts">
                 <label for="mail">Почта</label>
-                    <input id="mail">
+                    <input id="mail" formControlName="mail">
                 <label for="pass">Пароль</label>
-                    <input id="pass">
+                    <input id="pass" formControlName="pass">
              </div>
              <button type ="submit" class="button">Создать</button>
         </form>
-        <form action="" *ngIf="registrationState == 1">
+        <form action="" *ngIf="registrationState == 1" [formGroup]="checkoutForm" (ngSubmit)="">
             <div class="input-container">
                 <label for="name">Название организации</label>
-                    <input id="name">
+                    <input id="name" formControlName="name">
                 <label for="description">Описание</label>
-                    <input id="description">
+                    <input id="description" formControlName="description">
                 <label for="address">Адрес</label>
-                    <input id="address">
+                    <input id="address" formControlName="address">
                 <label for="tel">Телефон</label>
-                    <input id="tel">
+                    <input id="tel" formControlName="tel">
                 <label for="mail">Почта</label>
-                    <input id="mail">
+                    <input id="mail" formControlName="mail">
                 <label for="pass">Пароль</label>
-                    <input id="pass">
+                    <input id="pass" formControlName="pass">
             </div>
             <button type ="submit" class="button">Создать</button>
         </form>
