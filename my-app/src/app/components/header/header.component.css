@@ -20,7 +20,11 @@ nav {
 }
 
 .counter {
-    width: 150px;
+    width: 119px;
+    text-align: center;
+    border: 1px solid white;
+    border-radius: 5px;
+    margin-left: 44px;
 }
 .lists-block {
     width: 300px;
