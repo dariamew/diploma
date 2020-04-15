@@ -11,7 +11,8 @@ import { IntroComponent } from './components/intro/intro.component';
 
 const routes: Routes = [
   {path: '', component: IntroComponent},
-  {path: 'signup', component: SignUpComponent}
+  {path: 'signup', component: SignUpComponent},
+  {path: 'login', component: LogInComponent}
 ];
 
 @NgModule({
