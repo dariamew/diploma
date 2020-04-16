@@ -5,7 +5,7 @@
         <label>Студент</label> 
             <input type="radio" name="registrationState" id="organizationChoice" value="1" (change)="changeHandler(1)">
         <label>Представитель организации</label> <br>
-        <form *ngIf="registrationState == 0" [formGroup]="checkoutForm" (ngSubmit)="">
+        <form *ngIf="registrationState == 0" [formGroup]="checkoutForm">
             <div class="input-container">
                 <label for="fio">ФИО</label>
                     <input id="fio" formControlName="fio">
@@ -26,7 +26,7 @@
              </div>
              <button type ="submit" class="button">Создать</button>
         </form>
-        <form action="" *ngIf="registrationState == 1" [formGroup]="checkoutForm" (ngSubmit)="">
+        <form action="" *ngIf="registrationState == 1" [formGroup]="checkoutForm">
             <div class="input-container">
                 <label for="name">Название организации</label>
                     <input id="name" formControlName="name">

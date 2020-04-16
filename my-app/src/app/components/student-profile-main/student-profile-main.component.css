@@ -1,0 +1,27 @@
+.container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 100px;
+}
+.avatar {
+    text-align: center;
+    background-color: #FF4D00;
+    color: white;
+    font-size: 50px;
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+    position: relative;
+    margin-left: 100px;
+
+}
+.avatar-text {
+    display: block;
+    width: 100px;
+    position: absolute;
+    top: 30%;
+    left: 25%;
+}
+.container-info {
+    margin-right: 40%;
+}

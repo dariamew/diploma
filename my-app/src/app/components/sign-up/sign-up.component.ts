@@ -91,7 +91,7 @@ export class SignUpComponent implements OnInit {
       });
       }
   }
-  onSubmit() {
+ /* onSubmit() {
 
-  }
+  } */
 }
