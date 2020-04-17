@@ -16,6 +16,8 @@ export class AuthService {
   }
 
   signUpOrganization(organizationData: OrganizationModel) {
-    this.httpClient.post<any>("https://tasker2-cdae80cc.localhost.run/signup/organization", organizationData).subscribe(result => console.log(result));
+    this.httpClient.post<any>("https://tasker-diploma-app.herokuapp.com/signup/organizations", organizationData).subscribe(result => console.log(result));
   }
+
+  
 }

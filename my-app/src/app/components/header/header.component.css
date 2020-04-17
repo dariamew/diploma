@@ -10,6 +10,21 @@ a {
     text-decoration: none;
 }
 
+.link-style {
+    color: white;
+}
+.link-style:hover {
+    background: linear-gradient(180deg, rgba(255,77,0,0.8130602582830007) 50%, rgba(255,0,10,0.7178221630449055) 99%);
+}
+
+.link-style:visited {
+    color: white;
+}
+.link-style:active {
+    color: rgb(133, 48, 12);
+    border: none;
+}
+
 nav {
     color: white;
     display: flex;
@@ -41,11 +56,22 @@ nav {
 }
 
 .registration-style {
-    color: black;
     width: 90px;
     background-color: white;
     border-radius: 5px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     padding: 5px;
     margin-top: -4px;
+}
+.registration-link {
+    color: black;
+}
+.registration-link:visited{
+    color: black;
+}
+.registration-link:active{
+    color: white;
+}
+.registration-style:hover {
+    background-color: #dad6d6;
 }

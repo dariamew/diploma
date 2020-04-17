@@ -1,6 +1,9 @@
 <div class="container">
-    <p>Информация</p>
+    <p class="title">Информация</p>
         <div class="info-container">
-            
+                <div class="info-elements" *ngFor="let dataElement of studentData">
+                    <p class="info-title">{{dataElement.title}}</p>
+                    <p class="info-value">{{dataElement.value}}</p>
+                </div>
         </div>
 </div>

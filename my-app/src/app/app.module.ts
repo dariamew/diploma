@@ -15,6 +15,9 @@ import { StudentProfileComponent } from './components/student-profile/student-pr
 import { StudentProfileMainComponent } from './components/student-profile-main/student-profile-main.component';
 import { StudentProfileSkillsComponent } from './components/student-profile-skills/student-profile-skills.component';
 import { StudentProfileInfoComponent } from './components/student-profile-info/student-profile-info.component';
+import { StudentProfileFeedbackComponent } from './components/student-profile-feedback/student-profile-feedback.component';
+import { StudentListComponent } from './components/student-list/student-list.component';
+import { OrganizationListComponent } from './components/organization-list/organization-list.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +32,10 @@ import { StudentProfileInfoComponent } from './components/student-profile-info/s
     StudentProfileComponent,
     StudentProfileMainComponent,
     StudentProfileSkillsComponent,
-    StudentProfileInfoComponent
+    StudentProfileInfoComponent,
+    StudentProfileFeedbackComponent,
+    StudentListComponent,
+    OrganizationListComponent
   ],
   imports: [
     BrowserModule,

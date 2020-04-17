@@ -2,12 +2,42 @@
     <nav>
         <div class="counter">Счетчик</div>
         <div class="lists-block">
-            <a>Для студентов</a>
-            <a>Для предприятий</a>
+            <a class="link-style" routerLink="/organization_list">Для студентов</a>
+            <a class="link-style" routerLink="/student_list">Для предприятий</a>
         </div>
         <div class="user-block">
-            <a routerLink="/login">Вход</a>
-            <span class="registration-style"><a routerLink="/signup">Регистрация</a></span>
+            <a class="link-style" routerLink="/login">Вход</a>
+            <span class="registration-style"><a class="registration-link" routerLink="/signup">Регистрация</a></span>
         </div>
     </nav>
+   <!--  <nav *ngIf="student">
+        <div class="counter">Счетчик</div>
+        <div class="lists-block">
+            <a class="link-style">Для студентов</a>
+        </div>
+        <div class="user-block">
+            <span class="registration-style"><a class="registration-link" (click)="toggleMenu()">Меню</a></span>
+            <ul [hidden]="isShow">
+                <li><a>Редактировать</a></li>
+                <li><a>Приглашения</a></li>
+                <li><a>Заявки</a></li>
+                <li><a>Выход</a></li>
+            </ul>
+        </div>
+    </nav> -->
+    <!-- <nav *ngIf="organization">
+        <div class="counter">Счетчик</div>
+        <div class="lists-block">
+            <a class="link-style">Для предприятий</a>
+        </div>
+        <div class="user-block">
+            <span class="registration-style"><a class="toggleMenu()">Меню</a></span>
+            <ul [hidden]="isShow">
+                <li><a>Редактировать</a></li>
+                <li><a>Задачи</a></li>
+                <li><a>Заявки</a></li>
+                <li><a>Выход</a></li>
+            </ul>
+        </div>
+    </nav> -->
 </div>

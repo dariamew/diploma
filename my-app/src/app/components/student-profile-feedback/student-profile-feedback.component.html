@@ -1,0 +1,14 @@
+<div class="container">
+    <p>Отзывы</p>
+    <div>
+        <div class="feedback-element" *ngFor="let feedbackElement of feedbackData">
+            <div class="name-and-mark">
+                <p class="name-element">{{feedbackElement.name}}</p>
+                <p>Оценка: {{feedbackElement.mark}}</p>
+            </div>
+            <p class="date-element">{{feedbackElement.date}}</p>
+            <p>{{feedbackElement.text}}</p>
+            <p class="status-element">{{feedbackElement.status}}</p>
+        </div>
+    </div>
+</div>
