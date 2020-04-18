@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
 import { MethodCall } from '@angular/compiler';
 import { OrganizationModel } from 'src/app/models/signUpOrganizationModel';
+import { StudentModel } from 'src/app/models/signUpStudentModel';
 
 @Component({
   selector: 'app-sign-up',
@@ -59,7 +60,17 @@ export class SignUpComponent implements OnInit {
 
   onSubmit() {
     if (this.registrationState == 0) {
-      console.log(this.studentFormGroup.value);
+      let studentData : StudentModel = {
+        fio: this.studentFormGroup.controls.fio.value,
+        faculty: this.studentFormGroup.controls.faculty.value,
+        group: this.studentFormGroup.controls.group.value,
+        tel: this.studentFormGroup.controls.tel.value,
+        portfolio: this.studentFormGroup.controls.portfolio.value,
+        contacts: this.studentFormGroup.controls.contacts.value,
+        email: this.studentFormGroup.controls.email.value,
+        password: this.studentFormGroup.controls.password.value,
+      };
+      //console.log(this.studentFormGroup.value);
     } else {
       let organizationData : OrganizationModel = {
         email: this.organizationFormGroup.controls.mail.value,
