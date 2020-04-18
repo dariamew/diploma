@@ -1,6 +1,6 @@
 .container {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     margin-top: 100px;
 }
 .avatar {
@@ -8,11 +8,10 @@
     background-color: #FF4D00;
     color: white;
     font-size: 50px;
-    border-radius: 90%;
+    border-radius: 50%;
     width: 170px;
     height: 170px;
     position: relative;
-    margin-left: 100px;
 
 }
 .avatar-text {
@@ -23,5 +22,6 @@
     left: 21%;
 }
 .container-info {
-    margin-right: 55%;
+    margin-right: 195px;
+    padding-left: 50px;
 }

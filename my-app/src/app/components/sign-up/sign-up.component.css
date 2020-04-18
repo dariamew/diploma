@@ -24,10 +24,10 @@
     width: 250px ;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     font-size: 20px;
-    margin-bottom: 50px;
+    margin-bottom: 20px;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 50px;
+    margin-top: 20px;
 }
 .button:hover {
     background: linear-gradient(180deg, rgba(255,77,0,0.8130602582830007) 50%, rgba(255,0,10,0.7178221630449055) 99%);

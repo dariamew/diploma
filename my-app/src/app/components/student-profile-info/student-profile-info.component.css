@@ -5,10 +5,12 @@
 }
 .info-value {
     font-size: 13px;
+    font-weight: 300;
 }
 .info-elements {
     margin-left: 15px;
 }
 .info-title {
+    font-weight: 400;
     font-size: 14px;
 }
