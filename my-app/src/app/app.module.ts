@@ -18,6 +18,7 @@ import { StudentProfileInfoComponent } from './components/student-profile-info/s
 import { StudentProfileFeedbackComponent } from './components/student-profile-feedback/student-profile-feedback.component';
 import { StudentListComponent } from './components/student-list/student-list.component';
 import { OrganizationListComponent } from './components/organization-list/organization-list.component';
+import { OrganizationProfileComponent } from './components/organization-profile/organization-profile.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { OrganizationListComponent } from './components/organization-list/organi
     StudentProfileInfoComponent,
     StudentProfileFeedbackComponent,
     StudentListComponent,
-    OrganizationListComponent
+    OrganizationListComponent,
+    OrganizationProfileComponent
   ],
   imports: [
     BrowserModule,
