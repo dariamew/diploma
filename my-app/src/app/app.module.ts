@@ -19,6 +19,10 @@ import { StudentProfileFeedbackComponent } from './components/student-profile-fe
 import { StudentListComponent } from './components/student-list/student-list.component';
 import { OrganizationListComponent } from './components/organization-list/organization-list.component';
 import { OrganizationProfileComponent } from './components/organization-profile/organization-profile.component';
+import { StudentProfileEditComponent } from './components/student-profile-edit/student-profile-edit.component';
+import { OrganizationProfileEditComponent } from './components/organization-profile-edit/organization-profile-edit.component';
+import { OrganizationProfileNewTaskComponent } from './components/organization-profile-new-task/organization-profile-new-task.component';
+import { OrganizationProfileFeedbackComponent } from './components/organization-profile-feedback/organization-profile-feedback.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +41,11 @@ import { OrganizationProfileComponent } from './components/organization-profile/
     StudentProfileFeedbackComponent,
     StudentListComponent,
     OrganizationListComponent,
-    OrganizationProfileComponent
+    OrganizationProfileComponent,
+    StudentProfileEditComponent,
+    OrganizationProfileEditComponent,
+    OrganizationProfileNewTaskComponent,
+    OrganizationProfileFeedbackComponent
   ],
   imports: [
     BrowserModule,

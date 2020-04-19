@@ -1,28 +1,28 @@
-<div>
-    <h2>Название</h2>
-        <div>
+<div class="container">
+    <h2 class="info-title">Название</h2>
+        <div class="info-container">
             <h3>О предприятии</h3>
-            <p>Текст</p>
-            <h3>Контакты</h3>
-            <p>Почта</p>
-            <p>Телефон</p>
-            <p>Адрес</p>
+            <p class="info-text">Текст</p>
+            <h3 class="contacts-title">Контакты</h3>
+            <p class="info-text">Почта</p> <br>
+            <p class="info-text">Телефон</p> <br>
+            <p class="info-text">Адрес</p>
         </div>
 </div>
 <div>
-    <h2>Задачи</h2>
-        <div *ngFor="">
-            <p>Описание:</p>
-            <p>Навыки:</p>
-            <p>Тип:</p>
-            <p>КОличество мест:</p>
+    <h2 class="task-title">Задачи</h2>
+        <div class="task-container" *ngFor="let taskElement of TaskData">
+            <p ><span class="task-text">Описание</span> <br> {{taskElement.description}}</p>
+            <p ><span class="task-text">Навыки</span> <br> {{taskElement.skills}}</p>
+            <p><span class="task-text">Тип</span> <br> {{taskElement.type}}</p>
+            <p ><span class="task-text">Количество мест</span> <br> {{taskElement.amount}}</p>
         </div>
 </div>
 <div>
-    <h2>Отзывы</h2>
-        <div *ngFor="">
-            <p>Имя Фамилия Отчество</p>
-            <p>Дата</p>
-            <p>Текст</p>
+    <h2 class="feedback-title">Отзывы</h2>
+        <div class="feedback-container" *ngFor="let feedbackElement of feedbackData">
+            <p class="feedback-name">{{feedbackElement.name}}</p>
+            <p class="feedback-date">{{feedbackElement.date}}</p>
+            <p>{{feedbackElement.text}}</p>
         </div>
 </div>
