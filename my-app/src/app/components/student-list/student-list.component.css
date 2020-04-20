@@ -11,9 +11,6 @@
     margin-left: auto;
     margin-right: auto;
 }
-.small {
-    font-size: 10px;
-}
 a {
   text-decoration: none;
 }
@@ -28,4 +25,17 @@ a {
 }
 .link-style:visited {
   color:black;
+}
+
+.user-value {
+  font-size: 13px;
+  font-weight: 300;
+}
+.user-title {
+  font-weight: 400;
+  font-size: 14px;
+}
+.user-name {
+  font-size: 15px;
+  font-weight: 500;
 }

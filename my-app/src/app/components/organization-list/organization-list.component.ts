@@ -8,10 +8,10 @@ import { Component, OnInit } from '@angular/core';
 export class OrganizationListComponent implements OnInit {
 
   userData = [
-    { fio: "Имя Фамилия Отчество", faculty: "Программирование", group: "888" },
-    { fio: "Имя Фамилия Отчество", faculty: "Программирование", group: "888" },
-    { fio: "Имя Фамилия Отчество", faculty: "Программирование", group: "888" }
-  ]
+    { name: "Ростелеком", description: "Описание очень длинннннннннннннннннооооооооооооооееееееееееее" },
+    { name: "Ростелеком", description: "Описание очень длинннннннннннннннннооооооооооооооееееееееееее" },
+    { name: "Ростелеком", description: "Описание очень длинннннннннннннннннооооооооооооооееееееееееее" },
+  ];
 
   constructor() { }
 

@@ -23,6 +23,10 @@ import { StudentProfileEditComponent } from './components/student-profile-edit/s
 import { OrganizationProfileEditComponent } from './components/organization-profile-edit/organization-profile-edit.component';
 import { OrganizationProfileNewTaskComponent } from './components/organization-profile-new-task/organization-profile-new-task.component';
 import { OrganizationProfileFeedbackComponent } from './components/organization-profile-feedback/organization-profile-feedback.component';
+import { OrganizationProfileTaskListComponent } from './components/organization-profile-task-list/organization-profile-task-list.component';
+import { OrganizationProfileRequestListComponent } from './components/organization-profile-request-list/organization-profile-request-list.component';
+import { StudentProfileRequestListComponent } from './components/student-profile-request-list/student-profile-request-list.component';
+import { StudentProfileInvitationListComponent } from './components/student-profile-invitation-list/student-profile-invitation-list.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +49,11 @@ import { OrganizationProfileFeedbackComponent } from './components/organization-
     StudentProfileEditComponent,
     OrganizationProfileEditComponent,
     OrganizationProfileNewTaskComponent,
-    OrganizationProfileFeedbackComponent
+    OrganizationProfileFeedbackComponent,
+    OrganizationProfileTaskListComponent,
+    OrganizationProfileRequestListComponent,
+    StudentProfileRequestListComponent,
+    StudentProfileInvitationListComponent
   ],
   imports: [
     BrowserModule,

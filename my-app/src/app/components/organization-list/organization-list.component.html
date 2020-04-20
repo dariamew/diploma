@@ -1,11 +1,9 @@
 <div class="container">
     <div class="user-element" *ngFor="let user of userData">
         <div>
-            <b><p>{{user.fio}}</p></b>
-            <p>Направление </p>
-            <p class="small">{{user.faculty}}</p>
-            <p>Номер группы</p>
-            <p class="small">{{user.group}}</p>
+            <p class="user-name">{{user.name}}</p>
+            <p class="user-title">О предприятии</p>
+            <p class="user-value">{{user.description}}</p>
             <a class="link-style" routerLink="">Перейти к профилю</a>
     </div>
 </div>
