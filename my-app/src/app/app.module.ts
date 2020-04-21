@@ -27,6 +27,8 @@ import { OrganizationProfileTaskListComponent } from './components/organization-
 import { OrganizationProfileRequestListComponent } from './components/organization-profile-request-list/organization-profile-request-list.component';
 import { StudentProfileRequestListComponent } from './components/student-profile-request-list/student-profile-request-list.component';
 import { StudentProfileInvitationListComponent } from './components/student-profile-invitation-list/student-profile-invitation-list.component';
+import { OrganizationSendInvitationComponent } from './components/organization-send-invitation/organization-send-invitation.component';
+import { AdminProfileComponent } from './components/admin-profile/admin-profile.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +55,9 @@ import { StudentProfileInvitationListComponent } from './components/student-prof
     OrganizationProfileTaskListComponent,
     OrganizationProfileRequestListComponent,
     StudentProfileRequestListComponent,
-    StudentProfileInvitationListComponent
+    StudentProfileInvitationListComponent,
+    OrganizationSendInvitationComponent,
+    AdminProfileComponent
   ],
   imports: [
     BrowserModule,

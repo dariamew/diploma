@@ -1,1 +1,29 @@
-<p>student-profile-invitation-list works!</p>
+<div class="container">
+    <h2>Приглашения</h2>
+    <h3>Новые приглашения</h3>
+    <div class="inv-element" *ngFor=" let invitation of invitations"> 
+            <p class="inv-name">{{invitation.name}}</p>
+            <p class="inv-date">{{invitation.date}}</p>
+        <p class="">{{invitation.text}}</p>
+        <p class="inv-task"> <span class="orange">Описание:</span> {{invitation.description}}</p>
+        <p class="inv-task"> <span class="orange">Навыки:</span> {{invitation.skills}}</p>
+        <p class="inv-task"><span class="orange">Тип:</span> {{invitation.type}}</p>
+        <p class="inv-task"><span class="orange">Количество мест:</span> {{invitation.amount}}</p>
+        <a class="link-style">Перейти к профилю</a>
+            <div class="button-container">
+                <button class="button small">Принять</button>
+                <button class="button small">Отклонить</button>
+            </div>
+    </div>
+    <h3>Рассмотренные приглашения</h3>
+    <div class="inv-element" *ngFor=" let invitation of invitations"> 
+        <p class="inv-name">{{invitation.name}}</p>
+        <p class="inv-date">{{invitation.date}}</p>
+    <p class="">{{invitation.text}}</p>
+    <p class="inv-task"> <span class="orange">Описание:</span> {{invitation.description}}</p>
+    <p class="inv-task"> <span class="orange">Навыки:</span> {{invitation.skills}}</p>
+    <p class="inv-task"><span class="orange">Тип:</span> {{invitation.type}}</p>
+    <p class="inv-task"><span class="orange">Количество мест:</span> {{invitation.amount}}</p>
+    <a class="link-style">Перейти к профилю</a> <br>
+    <span class="inv-status">Принято</span>
+</div>

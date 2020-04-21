@@ -1,0 +1,29 @@
+.container {
+    font-size: 13px;
+}
+.link-span {
+    font-size: 17px;
+    margin-top: 5px;
+    padding: 10px;
+    background-color: #F9F6F6;
+    width: 200px;
+    margin-left: 50px;
+}
+a {
+    text-decoration: none;
+}
+
+.link-style:hover {
+  border-bottom: 1px solid #FF4D00;
+}
+.link-style:active {
+  color: #FF4D00;
+}
+.link-style:visited {
+  color:black;
+}
+.flex-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
