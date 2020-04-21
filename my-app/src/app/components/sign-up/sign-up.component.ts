@@ -68,8 +68,9 @@ export class SignUpComponent implements OnInit {
         portfolio: this.studentFormGroup.controls.portfolio.value,
         contacts: this.studentFormGroup.controls.contacts.value,
         email: this.studentFormGroup.controls.email.value,
-        password: this.studentFormGroup.controls.password.value,
+        password: this.studentFormGroup.controls.password.value
       };
+      this.authService.signUpStudent(studentData);
       //console.log(this.studentFormGroup.value);
     } else {
       let organizationData : OrganizationModel = {

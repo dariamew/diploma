@@ -1,6 +1,6 @@
 <div class="form-container">
     <h2 class="form-title">Новая задача</h2>
-    <form >
+    <form [formGroup]="newTaskFormGroup" (ngSubmit)="onSubmit()">
         <div class="input-container">
         <label for="description">Описание</label>
         <input id="description" formControlName="description">
@@ -8,8 +8,8 @@
         <input id="skills" formControlName="skills">
         <label for="type">Тип</label>
         <input id="type" formControlName="type">
-        <label for="amount">Количество мест</label>
-        <input id="amount" formControlName="amount">
+        <label for="maxAmount">Количество мест</label>
+        <input id="maxAmount" formControlName="maxAmount">
         </div>
         <button type="submit" class="button">Создать</button>
     </form>

@@ -1,13 +1,13 @@
 <div class="form-container">
     <h2 class="form-title">Отзыв</h2>
-    <form>
+    <form [formGroup]="newFeedbackFormGroup" (ngSubmit)="onSubmit()">
         <div class="input-container">
         <label for="mark">Оценка</label>
         <input id="mark" formControlName="mark">
         <label for="feedText">Текст отзыва</label>
-        <input id="feedText" formControlName="feedText">
-        <label for="status">Статус</label>
-        <input id="status" formControlName="status">
+        <input id="feedText" formControlName="text">
+        <label for="isCompleted">Статус</label>
+        <input id="isCompleted" formControlName="isCompleted">
         </div>
         <button type="submit" class="button">Отправить</button>
     </form>
