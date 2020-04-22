@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { TaskModel } from 'src/app/models/newTaskModel';
-import { NewTaskService } from 'src/app/services/newTask.service';
+import { TaskModel } from 'src/app/models/taskModel';
+import { NewTaskService } from 'src/app/services/new-task.service';
 
 @Component({
   selector: 'app-organization-profile-new-task',

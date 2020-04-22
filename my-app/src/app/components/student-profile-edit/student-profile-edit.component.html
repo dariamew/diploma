@@ -1,6 +1,6 @@
 <div class="form-container">
     <h2 class="form-title">Редактировать информацию</h2>
-    <form>
+    <form [formGroup]="editProfileFormGroup" (ngSubmit)="onSubmit()">
         <div class="input-container">
         <label for="fio">ФИО</label>
         <input id="fio" formControlName="fio">
