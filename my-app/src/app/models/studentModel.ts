@@ -1,4 +1,5 @@
 export interface StudentModel {
     fio: string;
-    tel: string;
+    faculty: string;
+    groupNumber: string;
 }

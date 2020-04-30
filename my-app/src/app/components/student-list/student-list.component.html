@@ -2,10 +2,10 @@
         <div class="user-element" *ngFor="let user of students">
             <div>
                 <p class="user-name">{{user.fio}}</p>
-                <p class="user-title">Фио </p>
-                <p class="user-value">{{user.tel}}</p>
-                <p class="user-title">Телефон</p>
-              
+                <p class="user-title">Направление</p>
+                <p class="user-value">{{user.faculty}}</p>
+                <p class="user-title">Номер группы</p>
+                <p class="user-value">{{user.groupNumber}}</p>
                 <a class="link-style" routerLink="">Перейти к профилю</a>
         </div>
     </div>

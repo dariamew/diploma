@@ -16,13 +16,6 @@ let corsOptions = {
 app.use(cors(corsOptions));
 app.use(bodyParser.json());
 
-/* const sqlConfig = {s
-    user: 'root',
-    password: '',
-    host: 'localhost',
-    database: 'diplom'
-}; */
-
 let connectionInfo = {
     host     : 'localhost',
     user     : 'root',
@@ -74,6 +67,9 @@ app.post("/signup/organization", function (req, res) {
 app.get("/organization_list", function(req, res) { 
     pool.query("SELECT * FROM organization", function(err, data) {
       if(err) return console.log(err);
+
+      console.log(data);
+      res.json(data);
     });
 });
 // получить список всех студентов
@@ -94,15 +90,3 @@ app.listen(port, function(){
 connection.end(function(){
     // The connection has been closed
 });
-
-/* app.get("/", function (request, response) {
-    let connection = sql.connect(sqlConfig, error => {
-        if (error) {
-            console.log(error);
-            response.send(JSON.stringify(error));
-        } else {
-            response.send("DB connected");
-        }
-    });
-});
- */

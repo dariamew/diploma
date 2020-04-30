@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { StudentsServiceService } from 'src/app/services/students-service.service';
-import { StudentModel } from 'src/app/models/signUpStudentModel';
+import { GetListsService } from 'src/app/services/get-lists.service';
+import { StudentModel } from 'src/app/models/studentModel';
 
 @Component({
   selector: 'app-student-list',
@@ -11,13 +11,7 @@ export class StudentListComponent implements OnInit {
 
   students: StudentModel[] = [];
 
-  userData = [
-    { fio: "Имя Фамилия Отчество", faculty: "Программирование", group: "888" },
-    { fio: "Имя Фамилия Отчество", faculty: "Программирование", group: "888" },
-    { fio: "Имя Фамилия Отчество", faculty: "Программирование", group: "888" }
-  ]
-
-  constructor(private studentService: StudentsServiceService) { }
+  constructor(private studentService: GetListsService) { }
 
   ngOnInit(): void {
     this.studentService.getStudents().subscribe(result => {
