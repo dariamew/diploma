@@ -1,12 +1,12 @@
 <div class="form-container">
-    <h2 class="form-title">Авторизация</h2>
-        <form action="">
-            <div class="input-container">
-                <label for="mailauth">Почта</label>
-                    <input id="mailauth" type="text">
-                <label for="password">Пароль</label>
-                    <input id="password" type="password">
-            </div>
-            <button type="" class="button">Войти</button>
-        </form>
+  <h2 class="form-title">Авторизация</h2>
+  <form [formGroup]="loginFormGroup" (ngSubmit)="onSubmit()">
+    <div class="input-container">
+      <label for="mailauth">Почта</label>
+      <input id="mailauth" type="text" formControlName="email">
+      <label for="password">Пароль</label>
+      <input id="password" type="password" formControlName="password">
     </div>
+    <button type="submit" class="button">Войти</button>
+  </form>
+</div>

@@ -13,8 +13,8 @@ export class GetListsService {
 
   getStudents(): Observable<StudentModel[]> {
     return this.hhtpClient.get<StudentModel[]>('http://localhost:8080/student_list');
- }
+  }
   getOrganizations(): Observable<OrganizationModel[]> {
-  return this.hhtpClient.get<OrganizationModel[]>('http://localhost:8080/organization_list');
-}
+    return this.hhtpClient.get<OrganizationModel[]>('http://localhost:8080/organization_list');
+  }
 }

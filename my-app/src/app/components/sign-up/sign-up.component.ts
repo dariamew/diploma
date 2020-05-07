@@ -22,7 +22,6 @@ export class SignUpComponent implements OnInit {
 
   changeHandler(event) {
     this.registrationState = event;
-    this.authService.method();
   }
 
   ngOnInit(): void {
@@ -67,8 +66,8 @@ export class SignUpComponent implements OnInit {
         tel: this.studentFormGroup.controls.tel.value,
         portfolio: this.studentFormGroup.controls.portfolio.value,
         contacts: this.studentFormGroup.controls.contacts.value,
-        email: this.studentFormGroup.controls.email.value,
-        password: this.studentFormGroup.controls.password.value
+        email: this.studentFormGroup.controls.mail.value,
+        password: this.studentFormGroup.controls.pass.value
       };
       this.authService.signUpStudent(studentData);
       //console.log(this.studentFormGroup.value);

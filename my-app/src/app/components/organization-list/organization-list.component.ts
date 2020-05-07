@@ -9,12 +9,7 @@ import { OrganizationModel } from 'src/app/models/organizationModel';
 })
 export class OrganizationListComponent implements OnInit {
 
-  organizations: OrganizationModel[]= [];
-  userData = [
-    { name: "Ростелеком", description: "Описание очень длинннннннннннннннннооооооооооооооееееееееееее" },
-    { name: "Ростелеком", description: "Описание очень длинннннннннннннннннооооооооооооооееееееееееее" },
-    { name: "Ростелеком", description: "Описание очень длинннннннннннннннннооооооооооооооееееееееееее" },
-  ];
+  organizations: OrganizationModel[] = [];
 
   constructor(private organizationService : GetListsService) { }
 

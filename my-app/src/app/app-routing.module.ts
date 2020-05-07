@@ -10,13 +10,19 @@ import { LogInComponent } from './components/log-in/log-in.component';
 import { IntroComponent } from './components/intro/intro.component';
 import { StudentListComponent } from './components/student-list/student-list.component';
 import { OrganizationListComponent } from './components/organization-list/organization-list.component';
+import { StudentProfileComponent } from './components/student-profile/student-profile.component';
+// import { AuthGuard } from './helpers/auth-guard';
+import { OrganizationProfileComponent } from './components/organization-profile/organization-profile.component';
 
 const routes: Routes = [
   {path: '', component: IntroComponent},
   {path: 'signup', component: SignUpComponent},
   {path: 'login', component: LogInComponent},
   {path: 'student_list', component: StudentListComponent},
-  {path: 'organization_list', component: OrganizationListComponent}
+  {path: 'organization_list', component: OrganizationListComponent},
+  {path: 'student_profile/:id', component: StudentProfileComponent},
+  {path: 'organization_profile/:id', component: OrganizationProfileComponent}
+  
 ];
 
 @NgModule({
