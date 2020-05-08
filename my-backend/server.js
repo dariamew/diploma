@@ -7,6 +7,8 @@ const cors = require('cors');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
+const accessTokenSecret = 'youraccesstokensecret';
+
 let originsWhitelist = ['http://localhost:4200'];
 let corsOptions = {
     origin: function (origin, callback) {
@@ -49,23 +51,23 @@ connection.connect(function (err) {
 // регистрация студента
 app.post("/signup/student", function (req, res) {
 
-        let fio = req.body.fio;
-        let faculty = req.body.faculty;
-        let groupNumber = req.body.group;
-        let tel = req.body.tel;
-        let portfolio = req.body.portfolio;
-        let contacts = req.body.contacts;
-        let email = req.body.email;
-        let password = req.body.password;
-       
+    let fio = req.body.fio;
+    let faculty = req.body.faculty;
+    let groupNumber = req.body.group;
+    let tel = req.body.tel;
+    let portfolio = req.body.portfolio;
+    let contacts = req.body.contacts;
+    let email = req.body.email;
+    let password = req.body.password;
 
-       pool.query("INSERT INTO users (email, password) VALUES (?,?)", [email, password], function (err, insertData) {
-       pool.query("INSERT INTO student (userId, fio, faculty, groupNumber, tel, portfolio, contacts) VALUES (?,?,?,?,?,?,?)", [insertData.insertId, fio, faculty, groupNumber, tel, portfolio, contacts], function (err, data) {
-           if (err) return console.log(err);
-           res.sendStatus(200);
-       });
+
+    pool.query("INSERT INTO users (email, password) VALUES (?,?)", [email, password], function (err, insertData) {
+        pool.query("INSERT INTO student (userId, fio, faculty, groupNumber, tel, portfolio, contacts) VALUES (?,?,?,?,?,?,?)", [insertData.insertId, fio, faculty, groupNumber, tel, portfolio, contacts], function (err, data) {
+            if (err) return console.log(err);
+            res.sendStatus(200);
+        });
     });
- });
+});
 //регистрация организации
 app.post("/signup/organization", function (req, res) {
 
@@ -75,64 +77,25 @@ app.post("/signup/organization", function (req, res) {
     let tel = req.body.tel;
     let email = req.body.email;
     let password = req.body.password;
+    let role = req.body.role;
 
 
-    pool.query("INSERT INTO users (email, password) VALUES (?,?)", [email, password], function (errWhileInsert, dataOnInsertComplited) {
+    pool.query("INSERT INTO users (email, password, role) VALUES (?,?,?)", [email, password, role], function (errWhileInsert, dataOnInsertComplited) {
         console.log("dataOnInsertComplited", dataOnInsertComplited.insertId, errWhileInsert);
         console.log("password", password);
-        
+
         // pool.query("SELECT * from users WHERE email=?, password=?", [email, password], function (errWhileSelect, dataOnSelectComplited) {
         //     console.log("dataOnSelectComplited", dataOnSelectComplited, errWhileSelect);
-             pool.query("INSERT INTO organization (userId ,name, description, address, tel) VALUES (?,?,?,?,?)", [dataOnInsertComplited.insertId, name, description, address, tel], function (err, data) {
-                if (err) return console.log(err);
-                res.sendStatus(200);
-             });
+        pool.query("INSERT INTO organization (userId ,name, description, address, tel) VALUES (?,?,?,?,?)", [dataOnInsertComplited.insertId, name, description, address, tel], function (err, data) {
+            if (err) return console.log(err);
+            res.sendStatus(200);
+        });
         // });
     });
 });
 
 
 
-const users = [
-    {
-        email: 'john',
-        password: 'password123admin',
-        role: 'admin'
-    }, {
-        email: 'anna',
-        password: 'password123member',
-        role: 'member'
-    }
-];
-
-const books = [
-    {
-        "author": "Chinua Achebe",
-        "country": "Nigeria",
-        "language": "English",
-        "pages": 209,
-        "title": "Things Fall Apart",
-        "year": 1958
-    },
-    {
-        "author": "Hans Christian Andersen",
-        "country": "Denmark",
-        "language": "Danish",
-        "pages": 784,
-        "title": "Fairy tales",
-        "year": 1836
-    },
-    {
-        "author": "Dante Alighieri",
-        "country": "Italy",
-        "language": "Italian",
-        "pages": 928,
-        "title": "The Divine Comedy",
-        "year": 1315
-    },
-];
-
-const accessTokenSecret = 'youraccesstokensecret';
 
 //авторизация
 app.post('/login', (req, res) => {
@@ -146,19 +109,22 @@ app.post('/login', (req, res) => {
         //  console.log(data);
         // res.json(data);
         // if (data) {
-            // Generate an access token
-            const accessToken = jwt.sign({ email: data.email, password: data.password }, accessTokenSecret);
-    
-           return res.json({
-                accessToken
-            });
+        // Generate an access token
+        const accessToken = jwt.sign({
+            email: data.email,
+            password: data.password,
+            role: data.role
+        }, accessTokenSecret);
+        return res.json({
+            accessToken
+        });
         // } else {
         //     res.send('Username or password incorrect');
         // }
     });
     // Filter user from the users array by username and password
     // const user = users.find(u => { return u.email === email && u.password === password });
-    
+
     // if (data) {
     //     // Generate an access token
     //     const accessToken = jwt.sign(data, accessTokenSecret);
@@ -195,6 +161,15 @@ app.post('/login', (req, res) => {
 // app.get('/books', authenticateJWT, (req, res) => {
 //     res.json(books);
 // });
+
+app.get("/admin_profile", function (req, res) {
+    pool.query("SELECT * FROM organization", function (err, data) {
+        if (err) return console.log(err);
+
+        console.log(data);
+        res.json(data);
+    });
+});
 
 //редактировать профиль студента
 app.post("/edit", function (req, res) {
@@ -253,10 +228,58 @@ app.get("/student_list", function (req, res) {
 app.get("/organization_profile/:id/tasks", function (req, res) {
     const id = req.body.id;
 
-    pool.query("SELECT * FROM tasks WHERE organizationId =?", [id], function (err, data) {
+    pool.query("SELECT * FROM task WHERE organizationId =?", [id], function (err, data) {
         if (err) return console.log(err);
 
         console.log(data);
+        res.json(data);
+    });
+});
+
+// получить все задачи для администратора
+app.get("/admin_tasks", function (req, res) {
+    pool.query("SELECT * FROM task", function (err, data) {
+        if (err) return console.log(err);
+
+        console.log(data);
+        res.json(data);
+    });
+});
+
+// получить все отзывы для администратора
+app.get("/admin_feedback", function (req, res) {
+    pool.query("SELECT * FROM review", function (err, data) {
+        if (err) return console.log(err);
+
+        console.log(data);
+        res.json(data);
+    });
+});
+
+// удалить задачу в роли администратора
+app.delete("/admin_tasks/:id", function (req, res) {
+    const id = req.params.id;
+
+    pool.query("DELETE FROM task WHERE id=?", [id], function (err, data) {
+        if (err) return console.log(err);
+
+        console.log(data);
+        res.json(data);
+    });
+});
+
+// редактировать задачу в роли администратора
+app.post("/admin_tasks/:id", function (req, res) {
+
+    let description = req.body.description;
+    let skills = req.body.address;
+    let type = req.body.type;
+    let maxAmount = req.body.maxAmount;
+    const id = req.body.id;
+
+    pool.query("UPDATE task SET description=?, skills=?, type=?, maxAmount=?  WHERE id=?", [description, skills, type, maxAmount, id], function (err, data) {
+        if (err) return console.log(err);
+
         res.json(data);
     });
 });

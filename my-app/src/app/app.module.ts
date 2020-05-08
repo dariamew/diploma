@@ -29,6 +29,8 @@ import { StudentProfileRequestListComponent } from './components/student-profile
 import { StudentProfileInvitationListComponent } from './components/student-profile-invitation-list/student-profile-invitation-list.component';
 import { OrganizationSendInvitationComponent } from './components/organization-send-invitation/organization-send-invitation.component';
 import { AdminProfileComponent } from './components/admin-profile/admin-profile.component';
+import { AdminProfileFeedbackComponent } from './components/admin-profile-feedback/admin-profile-feedback.component';
+import { AdminProfileTasksComponent } from './components/admin-profile-tasks/admin-profile-tasks.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +59,9 @@ import { AdminProfileComponent } from './components/admin-profile/admin-profile.
     StudentProfileRequestListComponent,
     StudentProfileInvitationListComponent,
     OrganizationSendInvitationComponent,
-    AdminProfileComponent
+    AdminProfileComponent,
+    AdminProfileFeedbackComponent,
+    AdminProfileTasksComponent
   ],
   imports: [
     BrowserModule,

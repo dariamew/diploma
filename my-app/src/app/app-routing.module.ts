@@ -13,6 +13,9 @@ import { OrganizationListComponent } from './components/organization-list/organi
 import { StudentProfileComponent } from './components/student-profile/student-profile.component';
 // import { AuthGuard } from './helpers/auth-guard';
 import { OrganizationProfileComponent } from './components/organization-profile/organization-profile.component';
+import { AdminProfileComponent } from './components/admin-profile/admin-profile.component';
+import { AdminProfileFeedbackComponent } from './components/admin-profile-feedback/admin-profile-feedback.component';
+import { AdminProfileTasksComponent } from './components/admin-profile-tasks/admin-profile-tasks.component';
 
 const routes: Routes = [
   {path: '', component: IntroComponent},
@@ -21,7 +24,10 @@ const routes: Routes = [
   {path: 'student_list', component: StudentListComponent},
   {path: 'organization_list', component: OrganizationListComponent},
   {path: 'student_profile/:id', component: StudentProfileComponent},
-  {path: 'organization_profile/:id', component: OrganizationProfileComponent}
+  {path: 'organization_profile/:id', component: OrganizationProfileComponent},
+  {path: 'admin_profile', component: AdminProfileComponent},
+  {path: 'admin_tasks', component: AdminProfileTasksComponent},
+  {path: 'admin_feedback', component: AdminProfileFeedbackComponent}
   
 ];
 
@@ -30,3 +36,4 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
+

@@ -5,4 +5,5 @@ export interface OrganizationModel {
     description: string;
     address: string;
     tel: string;
+    role: 2;
 }

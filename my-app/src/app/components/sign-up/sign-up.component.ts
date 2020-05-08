@@ -78,7 +78,8 @@ export class SignUpComponent implements OnInit {
         name: this.organizationFormGroup.controls.name.value,
         description: this.organizationFormGroup.controls.description.value,
         address: this.organizationFormGroup.controls.address.value,
-        tel: this.organizationFormGroup.controls.tel.value
+        tel: this.organizationFormGroup.controls.tel.value,
+        role: 2
       };
       //console.log(this.organizationFormGroup.controls.pass);
      this.authService.signUpOrganization(organizationData);

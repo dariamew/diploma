@@ -16,7 +16,7 @@ export class NewTaskService {
     }
   
     createNewTask(taskData: TaskModel) {
-      this.httpClient.post<any>("https://tasker-diploma-app.herokuapp.com/signup/organizations", taskData).subscribe(result => console.log(result));
+      this.httpClient.post<any>("http://localhost:8080/add_task", taskData).subscribe(result => console.log(result));
     }
     
   }

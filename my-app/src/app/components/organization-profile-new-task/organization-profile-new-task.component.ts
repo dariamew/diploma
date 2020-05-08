@@ -32,13 +32,13 @@ export class OrganizationProfileNewTaskComponent implements OnInit {
     });
   }
 
-  onSubmit() {
-      let taskData : TaskModel = {
-        description: this.newTaskFormGroup.controls.description.value,
-        skills: this.newTaskFormGroup.controls.faculty.value,
-        type: this.newTaskFormGroup.controls.group.value,
-        maxAmount: this.newTaskFormGroup.controls.tel.value,
-      };
-      this.newTaskService.createNewTask(taskData);
-  }
+  // onSubmit() {
+  //     let taskData : TaskModel = {
+  //       description: this.newTaskFormGroup.controls.description.value,
+  //       skills: this.newTaskFormGroup.controls.faculty.value,
+  //       type: this.newTaskFormGroup.controls.group.value,
+  //       maxAmount: this.newTaskFormGroup.controls.tel.value,
+  //     };
+  //     this.newTaskService.createNewTask(taskData);
+  // }
 }

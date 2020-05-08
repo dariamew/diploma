@@ -24,12 +24,15 @@ export class AuthService {
 
 
   signUpOrganization(organizationData: OrganizationModel) {
-    this.httpClient.post<any>("http://localhost:8080/signup/organization", organizationData).subscribe(result => console.log(result));
+    this.httpClient.post<any>("http://localhost:8080/signup/organization", organizationData).subscribe(result =>{
+       console.log(result)
+      });
   }
 
   signUpStudent(studentData: StudentModel) {
     this.httpClient.post<any>("http://localhost:8080/signup/student", studentData).subscribe(result => console.log(result));
   }
+  
   login(loginData: User) {
 
   this.httpClient.post<any>("http://localhost:8080/login", loginData).subscribe(result => console.log(result));
