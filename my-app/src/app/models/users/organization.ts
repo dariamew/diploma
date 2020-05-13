@@ -1,6 +1,5 @@
-export interface OrganizationModel {
-    email: string;
-    password: string;
+export interface Organization {
+    id: number;
     name: string;
     description: string;
     address: string;

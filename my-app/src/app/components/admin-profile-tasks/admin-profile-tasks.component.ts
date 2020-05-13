@@ -24,12 +24,12 @@ export class AdminProfileTasksComponent implements OnInit {
    deleteTask(id : number) {
     this.adminService.deleteTask(id).subscribe(data => {
       console.log(data);
-    });;
+    });
    }
    
-  editTask(id : number) {
-    this.adminService.editTask(id).subscribe(data => {
-      console.log(data);
-    });;
- }
+//   editTask(id : number) {
+//     this.adminService.editTask(id).subscribe(data => {
+//       console.log(data);
+//     });;
+//  }
 }

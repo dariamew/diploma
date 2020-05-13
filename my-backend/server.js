@@ -153,7 +153,7 @@ app.post("/signup/organization", (request, response) => {
     let password = request.body.password;
     let name = request.body.name;
     let description = request.body.description;
-    let address = request.body.description;
+    let address = request.body.address;
     let tel = request.body.tel;
 
     let insertOrganizationSQLQuery = "insert into organization (name, description, address, tel) values (?,?,?,?)";
@@ -244,9 +244,10 @@ app.post("/login", (request, response) => {
                 referenceId: selectedUser.referenceId 
             }, accessTokenSecret);
 
+
             return response.json({
                 accessToken: accessToken,
-                userData: selectReferenceUserResult
+                role: selectedUser.role
             });
         });
     });
@@ -325,15 +326,22 @@ app.get("/self", checkAuthorizationMiddleware, (request, response) => {
             console.error(`Не удалось найти ссылочного пользователя по id: ${jwtData.id}.`, JSON.stringify(error));
             return response.sendStatus(500);
         }
+        
+        let user = data[0];
 
-        console.info(`Найден ссылочный пользователь с id: ${data.id}`);
+        if (user) {
+            console.info(`Найден ссылочный пользователь с id: ${user.id}`);
+        } else {
+            console.error("Пользователь найден, но в массиве результата его нет");
+            return response.sendStatus(404);
+        }
 
         return response.json({
             userMetadata: {
                 id: jwtData.id,
                 role: jwtData.role
             },
-            userData: data
+            userData: user
         });
     });
 });
@@ -432,10 +440,6 @@ app.post("apply-ticket", checkAuthorizationMiddleware, checkRoleMiddleware([stud
 // };
 
 
-// app.get('/books', authenticateJWT, (req, res) => {
-//     res.json(books);
-// });
-
 app.get("/admin_profile", function (req, res) {
     pool.query("SELECT * FROM organization", function (err, data) {
         if (err) return console.log(err);
@@ -498,6 +502,15 @@ app.get("/student_list", function (req, res) {
     });
 });
 
+// получить количество записей для счетчика
+app.get("/counter", function (req, res) {
+    pool.query("SELECT COUNT(*) as count FROM users", function (err, data) {
+        if (err) return console.log(err);
+        console.log(data);
+        res.json(data);
+    });
+});
+
 // получить список задач от организации
 app.get("/organization_profile/:id/tasks", function (req, res) {
     const id = req.body.id;
@@ -530,6 +543,19 @@ app.get("/admin_feedback", function (req, res) {
     });
 });
 
+// удалить отзыв в роли администратора
+app.delete("/admin_feedback/:id", function (req, res) {
+
+    const id = req.params.id;
+
+    pool.query("DELETE FROM review WHERE id=?", [id], function (err, data) {
+        if (err) return console.log(err);
+
+        console.log(data);
+        res.json(data);
+    });
+});
+
 // удалить задачу в роли администратора
 app.delete("/admin_tasks/:id", function (req, res) {
     const id = req.params.id;
@@ -538,6 +564,17 @@ app.delete("/admin_tasks/:id", function (req, res) {
         if (err) return console.log(err);
 
         console.log(data);
+        res.json(data);
+    });
+});
+// получить задачу, перед тем, как редактировать в роли администратора
+app.get("/admin_tasks/:id", function (req, res) {
+
+    const id = req.params.id;
+
+    pool.query("SELECT * from tasks WHERE id=?", [id], function (err, data) {
+        if (err) return console.log(err);
+
         res.json(data);
     });
 });

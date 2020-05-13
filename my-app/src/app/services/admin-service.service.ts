@@ -17,12 +17,13 @@ export class AdminServiceService {
     return this.httpClient.delete<TaskModel[]>('http://localhost:8080/admin_tasks/' + id);
   }
 
-  editTask(id: number): Observable<TaskModel[]> {
-     return this.httpClient.put<TaskModel[]>('http://localhost:8080/admin_tasks/' + id);
-   }
+  // editTask(id: number): Observable<TaskModel[]> {
+  //    return this.httpClient.put<TaskModel[]>('http://localhost:8080/admin_tasks/' + id);
+  //  }
   // getAllFeedback(): Observable<OrganizationModel[]> {
   //   return this.hhtpClient.get<OrganizationModel[]>('http://localhost:8080/admin_feedback');
   // }
   
+
   
 }
