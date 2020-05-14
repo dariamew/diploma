@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AdminServiceService } from 'src/app/services/admin-service.service';
+import { AdminServiceService } from 'src/app/services/userServices/admin/admin-service.service';
 
 @Component({
   selector: 'app-admin-profile-feedback',

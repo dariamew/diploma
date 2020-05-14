@@ -12,7 +12,7 @@ export class AuthGuard implements CanActivate, CanActivateChild {
   private homeRoute = "/home";
   private homeStudentRoute = "/home/student";
   private homeOrganizationRoute = "/home/organization";
-  private homeAdminRoute = "/home/admin-profile";
+  private homeAdminRoute = "/home/admin";
 
   constructor(private authService: AuthService, private router: Router) { }
 

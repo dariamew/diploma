@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Organization } from '../../../models/users/organization';
 import { flatMap, map, tap } from 'rxjs/operators';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import { OrganizationServiceService } from 'src/app/services/organization-service.service';
+import { OrganizationServiceService } from 'src/app/services/userServices/organization/organization-service.service';
 
 @Component({
   selector: 'app-organization-profile',

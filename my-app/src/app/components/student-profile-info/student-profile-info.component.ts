@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Student } from 'src/app/models/users/student';
+import { flatMap, map, tap } from 'rxjs/operators';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { StudentServiceService } from 'src/app/services/userServices/student/student-service.service';
 
 @Component({
   selector: 'app-student-profile-info',
@@ -7,18 +11,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StudentProfileInfoComponent implements OnInit {
 
-  studentData = [
-    { title: "Направление", value: "Программирование" },
-    { title: "Номер группы", value: "768" },
-    { title: "Телефон", value: "89047787645" },
-    { title: "Почта", value: "pochta@mail.ru" },
-    { title: "Портфолио", value: "https://github.com" },
-    { title: "Соцсети", value: "https://github.com" },
-  ]
+  student: Student;
 
-  constructor() { }
+  constructor(private activatedRoute: ActivatedRoute, private studentService: StudentServiceService) { }
 
   ngOnInit(): void {
+    console.log("StudentComponent init");
+
+    this.activatedRoute.paramMap.pipe(
+      tap(params => console.log("params", params)),
+      map(params => params.get("id")),
+      flatMap(id => this.studentService.getStudent(id)),
+      tap(student => console.log("fetch student result: ", student)),
+      tap(student => this.student = student)
+    ).subscribe();
   }
 
 }

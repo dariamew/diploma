@@ -16,6 +16,8 @@ import { OrganizationProfileComponent } from './components/home/organization-pro
 import { AdminProfileComponent } from './components/home/admin-profile/admin-profile.component';
 import { AdminProfileFeedbackComponent } from './components/admin-profile-feedback/admin-profile-feedback.component';
 import { AdminProfileTasksComponent } from './components/admin-profile-tasks/admin-profile-tasks.component';
+import { componentFactoryName } from '@angular/compiler';
+import { StudentProfileEditComponent } from './components/student-profile-edit/student-profile-edit.component';
 
 const routes: Routes = [
   { path: '', component: IntroComponent },
@@ -31,6 +33,7 @@ const routes: Routes = [
       // { path: "organization/:id", component: OrganizationProfileComponent }
     ] 
   },
+  { path: "edit_student", component: StudentProfileEditComponent },
   { path: 'student_list', component: StudentListComponent },
   { path: 'organization_list', component: OrganizationListComponent },
   // {path: 'student/:id', component: StudentProfileComponent},

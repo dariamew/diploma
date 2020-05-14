@@ -59,7 +59,7 @@ export class SignUpComponent implements OnInit {
 
   onSubmit() {
     if (this.registrationState == 0) {
-      let studentData : StudentModel = {
+      let studentData: StudentModel = {
         fio: this.studentFormGroup.controls.fio.value,
         faculty: this.studentFormGroup.controls.faculty.value,
         group: this.studentFormGroup.controls.group.value,
@@ -69,10 +69,12 @@ export class SignUpComponent implements OnInit {
         email: this.studentFormGroup.controls.mail.value,
         password: this.studentFormGroup.controls.pass.value
       };
-      this.authService.signUpStudent(studentData);
+      this.authService.signUpStudent(studentData).subscribe(data => {
+        console.log(data);
+      });
       //console.log(this.studentFormGroup.value);
     } else {
-      let organizationData : OrganizationModel = {
+      let organizationData: OrganizationModel = {
         email: this.organizationFormGroup.controls.mail.value,
         password: this.organizationFormGroup.controls.pass.value,
         name: this.organizationFormGroup.controls.name.value,
@@ -80,10 +82,10 @@ export class SignUpComponent implements OnInit {
         address: this.organizationFormGroup.controls.address.value,
         tel: this.organizationFormGroup.controls.tel.value
       };
-      
-     this.authService.signUpOrganization(organizationData).subscribe(data => {
-    console.log(data);
-    });
+
+      this.authService.signUpOrganization(organizationData).subscribe(data => {
+        console.log(data);
+      });
     }
   }
 }

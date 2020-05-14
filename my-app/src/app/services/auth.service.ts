@@ -14,27 +14,27 @@ import { SignInResult } from '../models/signInResult';
 })
 export class AuthService {
 
-  //  static adminUserType = 0;
-   static studentUserType = 1;
-   static organizationUserType = 2;
+  static adminUserType = 0;
+  static studentUserType = 1;
+  static organizationUserType = 2;
 
-   private static authenticatedDataStorageKey = "authenticated-user";
+  private static authenticatedDataStorageKey = "authenticated-user";
 
   constructor(private httpClient: HttpClient, private router: Router) {
     this.logout(false);
   }
 
-  signUpOrganization(organization: OrganizationModel): Observable<SignInResult> {
+  signUpOrganization(organization: OrganizationModel): Observable<SignInResult> { // регистрация организации
     // this.httpClient.post<any>("http://localhost:8080/signup/organization", organization).subscribe(result =>{
     //    console.log(result)
     //   });
-      return this.httpClient.post<SignInResult>("http://localhost:8080/signup/organization", organization).pipe(
-        tap(result => this.completeAuthenticationFlow(result))
-      );
-    
+    return this.httpClient.post<SignInResult>("http://localhost:8080/signup/organization", organization).pipe(
+      tap(result => this.completeAuthenticationFlow(result))
+    );
+
   }
 
-  signUpStudent(student: StudentModel) {
+  signUpStudent(student: StudentModel) { // регистрация студента
     // this.httpClient.post<any>("http://localhost:8080/signup/student", student).subscribe(result => console.log(result));
     // Функция pipe принимает массив функций, которые выполняются после того, как отработает запрос на сервер
     // Функция tap просто выполняет, которая передана, как аргумент
@@ -42,15 +42,14 @@ export class AuthService {
       tap(result => this.completeAuthenticationFlow(result))
     );
   }
-  
-  login(email: string, password: string): Observable<SignInResult> {
+
+  login(email: string, password: string): Observable<SignInResult> { // логин
     return this.httpClient.post<SignInResult>("http://localhost:8080/login", { email: email, password: password }).pipe(
-    // return this.fakeNetworkService.signInRequest().pipe(
       tap(result => this.completeAuthenticationFlow(result))
     );
   }
 
-  logout(shouldRedirect: boolean) {
+  logout(shouldRedirect: boolean) { // выход 
     this.resetAuthenticatedUser();
 
     if (shouldRedirect) {
@@ -58,13 +57,13 @@ export class AuthService {
     }
   }
 
-  isAuthenticated(): boolean {
+  isAuthenticated(): boolean { // проверяет, авторизован ли пользователь
     let isAuthenticated = !isNullOrUndefined(localStorage.getItem(AuthService.authenticatedDataStorageKey));
     console.log("isAuthenticated", isAuthenticated);
     return isAuthenticated
   }
 
-  authenticatedUserType(): number {
+  authenticatedUserType(): number { // определяет роль авторизованного пользователя
     let signInResult: SignInResult = JSON.parse(localStorage.getItem(AuthService.authenticatedDataStorageKey));
     console.log("sign in result", signInResult);
     return signInResult.role;
@@ -82,34 +81,10 @@ export class AuthService {
 
   // Utils
 
-  private completeAuthenticationFlow(signInResult: SignInResult) {
+  private completeAuthenticationFlow(signInResult: SignInResult) { // конечный поток авторизации, в результате которого попадаем на рут home
     localStorage.setItem(AuthService.authenticatedDataStorageKey, JSON.stringify(signInResult));
     console.log("Authentication access: [/home]");
     this.router.navigate(["/home"]);
   }
-  // login(loginData: User) {
 
-  // this.httpClient.post<any>("http://localhost:8080/login", loginData).subscribe(result => console.log(result));
-  // }
-
-  // login(email: string, password: string) {
-  //   return this.httpClient.post<any>("http://localhost:8080/login", { email, password })
-  //     .pipe(map(user => {
-  //       //вход успешный, если в ответе токен
-  //       if (user && user.token) {
-  //         // помещает токен и данные пользователя в хранилище, чтобы пользователь оставался залогиненым
-  //         localStorage.setItem('currentUser', JSON.stringify(user));
-  //         this.currentUserSubject.next(user);
-  //       }
-
-  //       return user;
-  //     }));
-  // }
-
-
-  // logout() {
-  //   // извлекает пользователя из хранилища для выхода 
-  //   localStorage.removeItem('currentUser');
-  //   this.currentUserSubject.next(null);
-  // }
 }

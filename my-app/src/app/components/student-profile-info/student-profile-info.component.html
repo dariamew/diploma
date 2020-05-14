@@ -1,9 +1,17 @@
 <div class="container">
     <p class="title">Информация</p>
         <div class="info-container">
-                <div class="info-elements" *ngFor="let dataElement of studentData">
-                    <p class="info-title">{{dataElement.title}}</p>
-                    <p class="info-value">{{dataElement.value}}</p>
+                <div class="info-elements">
+                    <p class="info-title">Направление</p>
+                    <p class="info-value">{{student.faculty}}</p>
+                    <p class="info-title">Номер группы</p>
+                    <p class="info-value">{{student.groupNumber}}</p>
+                    <p class="info-title">Телефон</p>
+                    <p class="info-value">{{student.tel}}</p>
+                    <p class="info-title">Портфолио</p>
+                    <p class="info-value">{{student.portfolio}}</p>
+                    <p class="info-title">Соцсети</p>
+                    <p class="info-value">{{student.contacts}}</p>
                 </div>
         </div>
 </div>

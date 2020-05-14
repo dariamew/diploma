@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { GetListsService } from 'src/app/services/get-lists.service';
+import { GetListsService } from 'src/app/services/otherServices/get-lists.service';
 import { OrganizationModel } from 'src/app/models/organizationModel';
 
 @Component({

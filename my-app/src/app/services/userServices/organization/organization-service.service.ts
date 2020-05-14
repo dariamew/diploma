@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Organization } from '../models/users/organization';
+import { Organization } from '../../../models/users/organization';
 import { isNullOrUndefined } from 'util';
 import { Observable } from 'rxjs';
-import { AuthService } from './auth.service';
-import { FetchOrganizationResult } from '../models/users/fetchOrganizationModel';
+import { AuthService } from '../../auth.service';
+import { FetchOrganizationResult } from '../../../models/users/fetchOrganizationModel';
 import { map } from 'rxjs/operators';
 
 @Injectable({

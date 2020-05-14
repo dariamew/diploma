@@ -62,29 +62,6 @@ function getTableNameByRole(role) { //функция для возвращени
     }
 }
 
-
- // регистрация студента
-// app.post("/signup/student", function (req, res) {
-
-//     let fio = req.body.fio;
-//     let faculty = req.body.faculty;
-//     let groupNumber = req.body.group;
-//     let tel = req.body.tel;
-//     let portfolio = req.body.portfolio;
-//     let contacts = req.body.contacts;
-//     let email = req.body.email;
-//     let password = req.body.password;
-
-
-//     pool.query("INSERT INTO users (email, password) VALUES (?,?)", [email, password], function (err, insertData) {
-//         pool.query("INSERT INTO student (userId, fio, faculty, groupNumber, tel, portfolio, contacts) VALUES (?,?,?,?,?,?,?)", [insertData.insertId, fio, faculty, groupNumber, tel, portfolio, contacts], function (err, data) {
-//             if (err) return console.log(err);
-//             res.sendStatus(200);
-//         });
-//     });
-// });
-
-
 //регистрация студента
 app.post("/signup/student", (request, response) => {
 
@@ -92,7 +69,7 @@ app.post("/signup/student", (request, response) => {
     let password = request.body.password;
     let fio = request.body.fio;
     let faculty = request.body.faculty;
-    let groupNumber = request.body.groupNumber;
+    let groupNumber = request.body.group;
     let tel = request.body.tel;
     let portfolio = request.body.portfolio;
     let contacts = request.body.contacts;
@@ -468,20 +445,20 @@ app.post("/edit", function (req, res) {
 });
 
 //редактировать профиль организации
-app.post("/edit", function (req, res) {
+// app.post("/edit", function (req, res) {
 
-    let name = req.body.name;
-    let description = req.body.description;
-    let address = req.body.address;
-    let tel = req.body.tel;
-    const id = req.body.id;
+//     let name = req.body.name;
+//     let description = req.body.description;
+//     let address = req.body.address;
+//     let tel = req.body.tel;
+//     const id = req.body.id;
 
-    pool.query("UPDATE student SET  WHERE id=?", [name, description, address, tel, id], function (err, data) {
-        if (err) return console.log(err);
+//     pool.query("UPDATE student SET  WHERE id=?", [name, description, address, tel, id], function (err, data) {
+//         if (err) return console.log(err);
 
-        res.json(data);
-    });
-});
+//         res.json(data);
+//     });
+// });
 
 // получить список всех организаций
 app.get("/organization_list", function (req, res) {

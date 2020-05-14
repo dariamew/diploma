@@ -1,6 +1,6 @@
 <div class="form-container">
     <h2 class="form-title">Новая задача</h2>
-    <form [formGroup]="newTaskFormGroup" (ngSubmit)="onSubmit()">
+    <form [formGroup]="newTaskFormGroup" >
         <div class="input-container">
         <label for="description">Описание</label>
         <input id="description" formControlName="description">

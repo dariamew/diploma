@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EditProfileService } from 'src/app/services/edit-profile.service';
 import { EditStudentModel } from 'src/app/models/editStudentModel';
+import { StudentServiceService } from 'src/app/services/userServices/student/student-service.service';
 
 @Component({
   selector: 'app-student-profile-edit',
@@ -13,7 +14,7 @@ export class StudentProfileEditComponent implements OnInit {
 
   editProfileFormGroup: FormGroup;
 
-  constructor(private formBuilder: FormBuilder,  private editProfileService: EditProfileService) { }
+  constructor(private formBuilder: FormBuilder,  private editProfileService: EditProfileService, private studentService: StudentServiceService) { }
 
   ngOnInit(): void {
     this.initForm();
@@ -29,8 +30,8 @@ export class StudentProfileEditComponent implements OnInit {
       faculty: ['', [Validators.required]],
       group: ['', [Validators.required]],
       tel: ['', [Validators.required]],
-      portfolio: ['http//google.com', [Validators.required]],
-      contacts: ['http//google.com', [Validators.required]]
+      portfolio: ['', [Validators.required]],
+      contacts: ['', [Validators.required]]
     });
   }
 
@@ -44,6 +45,10 @@ export class StudentProfileEditComponent implements OnInit {
       contacts: this.editProfileFormGroup.controls.contacts.value
     };
     this.editProfileService.editStudentProfile(editStudentData);
+  }
+
+  deleteProfile(id: string) {
+    this.studentService.deleteStudent(id);
   }
 
 }
