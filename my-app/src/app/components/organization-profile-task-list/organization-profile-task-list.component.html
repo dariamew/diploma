@@ -1,7 +1,7 @@
 <div>
-        <div>
+        <div class="container">
             <h2 class="task-title">Список задач</h2>
-            <button class="button new-task"> + Добавить новую задачу</button>
+            <button class="button new-task"><a routerLink="/new_task">+ Добавить новую задачу</a></button>
         </div>
         <div class="task-container" *ngFor="let taskElement of TaskData">
             <p ><span class="task-text">Описание</span> <br> {{taskElement.description}}</p>

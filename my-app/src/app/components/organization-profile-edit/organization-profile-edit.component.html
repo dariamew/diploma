@@ -1,6 +1,6 @@
 <div class="form-container">
     <h2 class="form-title">Редактировать информацию</h2>
-    <form [formGroup]="editProfileFormGroup" (ngSubmit)="onSubmit()">
+    <form [formGroup]="editProfileFormGroup" (ngSubmit)="onSubmit(organization.id)">
         <div class="input-container">
           <label for="name">Название организации</label>
           <input id="name" formControlName="name">
@@ -13,5 +13,5 @@
         </div>
         <button type="submit" class="button">Сохранить</button>
       </form>
-      <button class="delete-button">Удалить профиль</button>
+      <button class="delete-button" (click)="deleteProfile(organization.id)">Удалить профиль</button>
 </div>

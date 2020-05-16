@@ -29,16 +29,12 @@ export class StudentServiceService {
     }
   }
 
-// getEditedStudent () {
-//   return this.httpClient.get<Student>('http://localhost:8080/edit_student/');
-// }
-
   editStudent(id: number, editData: EditStudentModel): Observable<EditStudentModel> {
       return this.httpClient.post<EditStudentModel>('http://localhost:8080/edit_student/'+ id, editData);
   
   }
 
-  deleteStudent (id: string): Observable<Student> {
+  deleteStudent (id: number): Observable<Student> {
     return this.httpClient.delete<Student>('http://localhost:8080/delete_student/'+ id);
   }
 

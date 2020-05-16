@@ -1,12 +1,17 @@
+<ul>
+    <li><a routerLink="/edit_organization">Редактировать</a></li>
+    <li><a routerLink="/organization_tasks">Задачи</a></li>
+    <li><a routerLink="/login">Приглашения</a></li>
+    <li><a (click)="logout()">Выход</a></li>
+  </ul>
 <div class="container">
-    <h2 class="info-title">Название {{organization.name}}</h2>
+    <h2 class="info-title">{{organization.name}}</h2>
         <div class="info-container">
             <h3>О предприятии</h3>
-            <p class="info-text">Текст {{organization.description}}</p>
+            <p class="info-text">{{organization.description}}</p>
             <h3 class="contacts-title">Контакты</h3>
-            <p class="info-text">Почта</p> <br>
-            <p class="info-text">Телефон {{organization.tel}}</p> <br>
-            <p class="info-text">Адрес {{organization.address}} </p>
+            <p class="info-text">Телефон: {{organization.tel}}</p>
+            <p class="info-text">Адрес: {{organization.address}} </p>
         </div>
 </div>
 <div>

@@ -59,7 +59,7 @@ export class StudentProfileEditComponent implements OnInit {
     });
   }
 
-  onSubmit( id:number ) {
+  onSubmit( id: number ) {
     let editStudentData : EditStudentModel = {
       fio: this.editProfileFormGroup.controls.fio.value,
       faculty: this.editProfileFormGroup.controls.faculty.value,
@@ -73,8 +73,10 @@ export class StudentProfileEditComponent implements OnInit {
     });
   }
 
-  deleteProfile(id: string) {
-    this.studentService.deleteStudent(id);
+  deleteProfile(id: number) {
+    this.studentService.deleteStudent(id).subscribe(data => {
+      console.log(data);
+    });
   }
 
 }

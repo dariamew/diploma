@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { TaskModel } from 'src/app/models/taskModel';
-import { NewTaskService } from 'src/app/services/new-task.service';
+import { NewTaskModel } from 'src/app/models/newTaskModel';
+import { OrganizationServiceService } from 'src/app/services/userServices/organization/organization-service.service';
+import { Organization } from '../../models/users/organization';
+import { ActivatedRoute } from '@angular/router';
+import { flatMap, map, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-organization-profile-new-task',
@@ -12,11 +15,20 @@ import { NewTaskService } from 'src/app/services/new-task.service';
 export class OrganizationProfileNewTaskComponent implements OnInit {
 
   newTaskFormGroup: FormGroup;
+  organization : Organization;
 
-  constructor(private formBuilder: FormBuilder,  private newTaskService: NewTaskService) { }
+  constructor(private formBuilder: FormBuilder,  private organizationService: OrganizationServiceService, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.initForm();
+
+    this.activatedRoute.paramMap.pipe(
+      tap(params => console.log("params", params)),
+      map(params => params.get("id")),
+      flatMap(id => this.organizationService.getOrganization(id)),
+      tap(organization => console.log("fetch organization result: ", organization)),
+      tap(organization => this.organization = organization)
+    ).subscribe();
   }
 
   private initForm() {
@@ -32,13 +44,15 @@ export class OrganizationProfileNewTaskComponent implements OnInit {
     });
   }
 
-  // onSubmit() {
-  //     let taskData : TaskModel = {
-  //       description: this.newTaskFormGroup.controls.description.value,
-  //       skills: this.newTaskFormGroup.controls.faculty.value,
-  //       type: this.newTaskFormGroup.controls.group.value,
-  //       maxAmount: this.newTaskFormGroup.controls.tel.value,
-  //     };
-  //     this.newTaskService.createNewTask(taskData);
-  // }
+  onSubmit(id: number) {
+      let taskData : NewTaskModel = {
+        description: this.newTaskFormGroup.controls.description.value,
+        skills: this.newTaskFormGroup.controls.skills.value,
+        type: this.newTaskFormGroup.controls.type.value,
+        maxAmount: this.newTaskFormGroup.controls.maxAmount.value,
+      };
+      this.organizationService.createTask(id, taskData).subscribe(data => {
+        console.log(data);
+      });
+  }
 }

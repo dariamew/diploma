@@ -3,6 +3,7 @@ import { Organization } from '../../../models/users/organization';
 import { flatMap, map, tap } from 'rxjs/operators';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { OrganizationServiceService } from 'src/app/services/userServices/organization/organization-service.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-organization-profile',
@@ -25,20 +26,23 @@ export class OrganizationProfileComponent implements OnInit {
     { name: "Ростелеком", date: "21.22.1998", text: "Очень хвалебный отзыв о работе", }
   ]
 
-  constructor(private activatedRoute: ActivatedRoute, private organizationService: OrganizationServiceService) { }
+  constructor(private activatedRoute: ActivatedRoute, private organizationService: OrganizationServiceService, private authService: AuthService) { }
 
   ngOnInit(): void {
     console.log("OrganizationComponent init")
 
-    setTimeout(() => {
-      this.activatedRoute.paramMap.pipe(
-              tap(params => console.log("params", params)),
-              map(params => params.get("id")),
-              flatMap(id => this.organizationService.getOrganization(id)),
-              tap(organization => console.log("fetch organization result: ", organization)),
-              tap(organization => this.organization = organization)
-            ).subscribe();
-    }, 3000);
+
+    this.activatedRoute.paramMap.pipe(
+      tap(params => console.log("params", params)),
+      map(params => params.get("id")),
+      flatMap(id => this.organizationService.getOrganization(id)),
+      tap(organization => console.log("fetch organization result: ", organization)),
+      tap(organization => this.organization = organization)
+    ).subscribe();
+  }
+
+  logout() {
+    this.authService.logout(true);
   }
 
 }

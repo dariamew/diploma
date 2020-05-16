@@ -437,8 +437,6 @@ app.post("/edit_student/:id", function (req, res) {
     let contacts = req.body.contacts;
     const id = req.params.id;
 
-    console.log(fio, faculty, groupNumber, tel, portfolio, contacts, id);
-
     pool.query("UPDATE student SET fio=?, faculty=?, groupNumber=?, tel=?, portfolio=?, contacts=? WHERE id=?", [fio, faculty, groupNumber, tel, portfolio, contacts, id], function (err, data) {
         if (err) return console.log(err);
 
@@ -470,20 +468,59 @@ app.delete("/delete_student/:id", function (req, res) {
 });
 
 //редактировать профиль организации
-// app.post("/edit_organization/:id", function (req, res) {
+app.post("/edit_organization/:id", function (req, res) {
 
-//     let name = req.body.name;
-//     let description = req.body.description;
-//     let address = req.body.address;
-//     let tel = req.body.tel;
-//     const id = req.params.id;
+    let name = req.body.name;
+    let description = req.body.description;
+    let address = req.body.address;
+    let tel = req.body.tel;
+    const id = req.params.id;
 
-//     pool.query("UPDATE student SET  WHERE id=?", [name, description, address, tel, id], function (err, data) {
-//         if (err) return console.log(err);
+    pool.query("UPDATE organization SET name=?, description=?, address=?, tel=? WHERE id=?", [name, description, address, tel, id], function (err, data) {
+        if (err) return console.log(err);
 
-//         res.json(data);
-//     });
-// });
+        res.json(data);
+    });
+});
+
+//удалить профиль организации
+app.delete("/delete_organization/:id", function (req, res) {
+
+    const id = req.params.id;
+    let deleteUserQuery = 'DELETE FROM users WHERE referenceId="' + id + '" AND role="' + organizationUserType + '"';
+   
+
+    pool.query("DELETE FROM student WHERE id=?", [id], function (err, data) {
+        if (err) return console.log(err);
+
+        console.log(data);
+        res.json(data);
+    });
+
+    pool.query(deleteUserQuery, function (err, data) {
+        if (err) return console.log(err);
+
+        console.log(data);
+        res.json(data);
+    });
+
+});
+
+//создать новую задачу в роли организации
+app.post("/create_task", function (req, res) {
+
+    let description = req.body.description;
+    let skills = req.body.skills;
+    let type = req.body.type;
+    let maxAmount = req.body.maxAmount;
+    const id = req.body.id;
+
+    pool.query("INSERT INTO task (type, organizationId, description, skills, maxAmount) values (?, ?, ?, ?, ?)", [type, id, description, skills, maxAmount], function (err, data) {
+        if (err) return console.log(err);
+
+        res.json(data);
+    });
+});
 
 // получить список всех организаций
 app.get("/organization_list", function (req, res) {

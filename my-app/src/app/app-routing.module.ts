@@ -18,6 +18,9 @@ import { AdminProfileFeedbackComponent } from './components/admin-profile-feedba
 import { AdminProfileTasksComponent } from './components/admin-profile-tasks/admin-profile-tasks.component';
 import { componentFactoryName } from '@angular/compiler';
 import { StudentProfileEditComponent } from './components/student-profile-edit/student-profile-edit.component';
+import { OrganizationProfileEditComponent } from './components/organization-profile-edit/organization-profile-edit.component';
+import { OrganizationProfileTaskListComponent } from './components/organization-profile-task-list/organization-profile-task-list.component';
+import { OrganizationProfileNewTaskComponent } from './components/organization-profile-new-task/organization-profile-new-task.component';
 
 const routes: Routes = [
   { path: '', component: IntroComponent },
@@ -34,6 +37,9 @@ const routes: Routes = [
     ] 
   },
   { path: "edit_student", component: StudentProfileEditComponent },
+  { path: "edit_organization", component: OrganizationProfileEditComponent },
+  { path: "organization_tasks", component: OrganizationProfileTaskListComponent },
+  { path: "new_task", component: OrganizationProfileNewTaskComponent },
   { path: 'student_list', component: StudentListComponent },
   { path: 'organization_list', component: OrganizationListComponent },
   // {path: 'student/:id', component: StudentProfileComponent},
