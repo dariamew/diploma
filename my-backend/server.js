@@ -427,15 +427,17 @@ app.get("/admin_profile", function (req, res) {
 });
 
 //редактировать профиль студента
-app.post("/edit", function (req, res) {
+app.post("/edit_student/:id", function (req, res) {
 
     let fio = req.body.fio;
     let faculty = req.body.faculty;
-    let groupNumber = req.body.group;
+    let groupNumber = req.body.groupNumber;
     let tel = req.body.tel;
     let portfolio = req.body.portfolio;
     let contacts = req.body.contacts;
-    const id = req.body.id;
+    const id = req.params.id;
+
+    console.log(fio, faculty, groupNumber, tel, portfolio, contacts, id);
 
     pool.query("UPDATE student SET fio=?, faculty=?, groupNumber=?, tel=?, portfolio=?, contacts=? WHERE id=?", [fio, faculty, groupNumber, tel, portfolio, contacts, id], function (err, data) {
         if (err) return console.log(err);
@@ -444,14 +446,37 @@ app.post("/edit", function (req, res) {
     });
 });
 
+// удалить профиль студента
+app.delete("/delete_student/:id", function (req, res) {
+
+    const id = req.params.id;
+    let deleteUserQuery = 'DELETE FROM users WHERE referenceId="' + id + '" AND role="' + studentUserType + '"';
+   
+
+    pool.query("DELETE FROM student WHERE id=?", [id], function (err, data) {
+        if (err) return console.log(err);
+
+        console.log(data);
+        res.json(data);
+    });
+
+    pool.query(deleteUserQuery, function (err, data) {
+        if (err) return console.log(err);
+
+        console.log(data);
+        res.json(data);
+    });
+
+});
+
 //редактировать профиль организации
-// app.post("/edit", function (req, res) {
+// app.post("/edit_organization/:id", function (req, res) {
 
 //     let name = req.body.name;
 //     let description = req.body.description;
 //     let address = req.body.address;
 //     let tel = req.body.tel;
-//     const id = req.body.id;
+//     const id = req.params.id;
 
 //     pool.query("UPDATE student SET  WHERE id=?", [name, description, address, tel, id], function (err, data) {
 //         if (err) return console.log(err);

@@ -6,6 +6,7 @@ import { Student } from '../../../models/users/student';
 import { FetchStudentResult } from 'src/app/models/users/fetchStudentModel';
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { EditStudentModel } from '../../../models/editStudentModel';
 
 @Injectable({
   providedIn: 'root'
@@ -32,8 +33,8 @@ export class StudentServiceService {
 //   return this.httpClient.get<Student>('http://localhost:8080/edit_student/');
 // }
 
-  editStudent(id: string, editData: Student): Observable<Student> {
-      return this.httpClient.put<Student>('http://localhost:8080/edit_student/'+ id, editData);
+  editStudent(id: number, editData: EditStudentModel): Observable<EditStudentModel> {
+      return this.httpClient.post<EditStudentModel>('http://localhost:8080/edit_student/'+ id, editData);
   
   }
 

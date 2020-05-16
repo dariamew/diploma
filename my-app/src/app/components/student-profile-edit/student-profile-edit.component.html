@@ -1,13 +1,13 @@
 <div class="form-container">
     <h2 class="form-title">Редактировать информацию</h2>
-    <form [formGroup]="editProfileFormGroup" (ngSubmit)="onSubmit()">
+    <form [formGroup]="editProfileFormGroup" (ngSubmit)="onSubmit(student.id)">
         <div class="input-container">
         <label for="fio">ФИО</label>
         <input id="fio" formControlName="fio">
         <label for="faculty">Направление</label>
         <input id="faculty" formControlName="faculty">
         <label for="group">Номер группы</label>
-        <input id="group" formControlName="group">
+        <input id="group" formControlName="groupNumber">
         <label for="tel">Телефон</label>
         <input id="tel" formControlName="tel">
         <label for="portfolio">Портфолио</label>
@@ -17,5 +17,5 @@
         </div>
         <button type="submit" class="button">Сохранить</button>
     </form>
-    <button class="delete-button" (click)="deleteProfile()">Удалить профиль</button>
+    <button class="delete-button">Удалить профиль</button>
 </div>

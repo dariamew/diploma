@@ -1,7 +1,7 @@
 export interface EditStudentModel {
     fio: string;
     faculty: string;
-    group: string;
+    groupNumber: string;
     tel: string;
     portfolio: string;
     contacts: string;
