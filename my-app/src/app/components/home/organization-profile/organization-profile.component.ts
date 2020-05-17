@@ -4,6 +4,7 @@ import { flatMap, map, tap } from 'rxjs/operators';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { OrganizationServiceService } from 'src/app/services/userServices/organization/organization-service.service';
 import { AuthService } from 'src/app/services/auth.service';
+import { TaskModel } from '../../../models/taskModel';
 
 @Component({
   selector: 'app-organization-profile',
@@ -13,12 +14,7 @@ import { AuthService } from 'src/app/services/auth.service';
 export class OrganizationProfileComponent implements OnInit {
 
   organization : Organization;
-
-  TaskData = [
-    { description: "Сделать сайт", skills: "HTML, CSS, PHP, SQL", type: "Практика", amount: "10" },
-    { description: "Сделать сайт", skills: "HTML, CSS, PHP, SQL", type: "Практика", amount: "10" },
-    { description: "Сделать сайт", skills: "HTML, CSS, PHP, SQL", type: "Практика", amount: "10" }
-  ]
+  task : TaskModel[] = [];
 
   feedbackData = [
     { name: "Ростелеком", date: "21.22.1998", text: "Очень хвалебный отзыв о работе",  },
@@ -37,7 +33,10 @@ export class OrganizationProfileComponent implements OnInit {
       map(params => params.get("id")),
       flatMap(id => this.organizationService.getOrganization(id)),
       tap(organization => console.log("fetch organization result: ", organization)),
-      tap(organization => this.organization = organization)
+      tap(organization => this.organization = organization),
+      tap(organization => this.organizationService.getTasks(organization.id).subscribe(result => {
+        this.task = result;
+      }))
     ).subscribe();
   }
 

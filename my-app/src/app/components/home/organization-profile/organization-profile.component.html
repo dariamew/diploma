@@ -16,11 +16,11 @@
 </div>
 <div>
     <h2 class="task-title">Задачи</h2>
-        <div class="task-container" *ngFor="let taskElement of TaskData">
+        <div class="task-container" *ngFor="let taskElement of task">
             <p ><span class="task-text">Описание</span> <br> {{taskElement.description}}</p>
             <p ><span class="task-text">Навыки</span> <br> {{taskElement.skills}}</p>
             <p><span class="task-text">Тип</span> <br> {{taskElement.type}}</p>
-            <p ><span class="task-text">Количество мест</span> <br> {{taskElement.amount}}</p>
+            <p ><span class="task-text">Количество мест</span> <br> {{taskElement.maxAmount}}</p>
         </div>
 </div>
 <div>

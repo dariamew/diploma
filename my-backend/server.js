@@ -522,6 +522,48 @@ app.post("/create_task", function (req, res) {
     });
 });
 
+//получить все задачи для организации
+app.get("/get_tasks/:id", function (req, res) {
+
+    const organizationId = req.params.id;
+
+    pool.query("SELECT * FROM task WHERE organizationId =?", [organizationId], function (err, data) {
+        if (err) return console.log(err);
+
+        console.log(data);
+        res.json(data);
+    });
+});
+
+// удалить задачу в роли организации
+app.delete("/delete_task/:id", function (req, res) {
+
+    const id = req.params.id;
+
+    pool.query("DELETE FROM task WHERE id=?", [id], function (err, data) {
+        if (err) return console.log(err);
+
+        console.log(data);
+        res.json(data);
+    });
+});
+
+//редактировать задачу в роли организации
+app.post("/edit_task/:id", function (req, res) {
+
+    let description = req.body.description;
+    let skills = req.body.address;
+    let type = req.body.type;
+    let maxAmount = req.body.maxAmount;
+    const id = req.body.id;
+
+    pool.query("UPDATE task SET description=?, skills=?, type=?, maxAmount=? WHERE id=?", [description, skills, type, maxAmount, id], function (err, data) {
+        if (err) return console.log(err);
+
+        res.json(data);
+    });
+});
+
 // получить список всех организаций
 app.get("/organization_list", function (req, res) {
     pool.query("SELECT * FROM organization", function (err, data) {
@@ -531,6 +573,7 @@ app.get("/organization_list", function (req, res) {
         res.json(data);
     });
 });
+
 // получить список всех студентов
 app.get("/student_list", function (req, res) {
     pool.query("SELECT * FROM student", function (err, data) {

@@ -8,6 +8,7 @@ import { FetchOrganizationResult } from '../../../models/users/fetchOrganization
 import { map } from 'rxjs/operators';
 import { EditOrganizationModel } from '../../../models/editOrganizationModel';
 import { NewTaskModel } from 'src/app/models/newTaskModel';
+import { TaskModel } from '../../../models/taskModel'
 
 @Injectable({
   providedIn: 'root'
@@ -39,7 +40,12 @@ export class OrganizationServiceService {
   }
 
   createTask(taskData: NewTaskModel): Observable<NewTaskModel> {
-    return this.httpClient.post<NewTaskModel>('http://localhost:8080/create_task', taskData); //id?
+    return this.httpClient.post<NewTaskModel>('http://localhost:8080/create_task', taskData);
+
+  }
+
+  getTasks(id: number): Observable<TaskModel[]> {
+    return this.httpClient.get<TaskModel[]>('http://localhost:8080/get_tasks/'+ id);
 
   }
   
@@ -48,9 +54,9 @@ export class OrganizationServiceService {
 
   // }
 
-  // deleteTask(id: number, editData: NewTaskModel): Observable<NewTaskModel> {
-  //   return this.httpClient.post<NewTaskModel>('http://localhost:8080/edit_organization/' + id, editData);
+  deleteTask(id: number): Observable<TaskModel> {
+    return this.httpClient.delete<TaskModel>('http://localhost:8080/delete_task/' + id);
 
-  // }
+  }
 
 }

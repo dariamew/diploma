@@ -32,8 +32,8 @@ const routes: Routes = [
     children: [
       { path: "student", component: StudentProfileComponent },
       { path: "student/:id", component: StudentProfileComponent },
-      { path: "organization", component: OrganizationProfileComponent }
-      // { path: "organization/:id", component: OrganizationProfileComponent }
+      { path: "organization", component: OrganizationProfileComponent },
+      { path: "organization/:id", component: OrganizationProfileComponent }
     ] 
   },
   { path: "edit_student", component: StudentProfileEditComponent },
@@ -42,8 +42,6 @@ const routes: Routes = [
   { path: "new_task", component: OrganizationProfileNewTaskComponent },
   { path: 'student_list', component: StudentListComponent },
   { path: 'organization_list', component: OrganizationListComponent },
-  // {path: 'student/:id', component: StudentProfileComponent},
-  // {path: 'organization/:id', component: OrganizationProfileComponent},
   // {path: 'admin', component: AdminProfileComponent},
   { path: 'admin_tasks', component: AdminProfileTasksComponent },
   { path: 'admin_feedback', component: AdminProfileFeedbackComponent },

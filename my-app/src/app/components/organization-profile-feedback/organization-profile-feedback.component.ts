@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FeedbackModel } from 'src/app/models/feedbackModel';
-import { NewFeedbackService } from 'src/app/services/new-feedback.service';
+import { OrganizationServiceService } from 'src/app/services/userServices/organization/organization-service.service';
 
 @Component({
   selector: 'app-organization-profile-feedback',
@@ -12,7 +12,7 @@ import { NewFeedbackService } from 'src/app/services/new-feedback.service';
 export class OrganizationProfileFeedbackComponent implements OnInit {
   newFeedbackFormGroup: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private newFeedbackService: NewFeedbackService ) { }
+  constructor(private formBuilder: FormBuilder, private organizationService: OrganizationServiceService ) { }
 
   ngOnInit(): void {
     this.initForm();
@@ -24,18 +24,18 @@ export class OrganizationProfileFeedbackComponent implements OnInit {
 
   private initnewFeedbackFormGroup() {
     this.newFeedbackFormGroup = this.formBuilder.group({
-      mark: ['Сделать сайт', [Validators.required]],
-      text: ['JS, Angular, SQL, PHP', [Validators.required]],
-      isCompleted: ['Практика/Стажировка', [Validators.required]]
+      mark: ['5', [Validators.required]],
+      text: ['Хорошая работа', [Validators.required]],
+      isCompleted: ['Завершено', [Validators.required]]
     });
   }
 
-  onSubmit() {
-      let feedbackData : FeedbackModel = {
-        mark: this.newFeedbackFormGroup.controls.mark.value,
-        text: this.newFeedbackFormGroup.controls.text.value,
-        isCompleted: this.newFeedbackFormGroup.controls.isCompleted.value
-      };
-      this.newFeedbackService.sendFeedback(feedbackData);
-  }
+  // onSubmit() {
+  //     let feedbackData : FeedbackModel = {
+  //       mark: this.newFeedbackFormGroup.controls.mark.value,
+  //       text: this.newFeedbackFormGroup.controls.text.value,
+  //       isCompleted: this.newFeedbackFormGroup.controls.isCompleted.value
+  //     };
+  //     this.newFeedbackService.sendFeedback(feedbackData);
+  // }
 }
