@@ -513,9 +513,9 @@ app.post("/create_task", function (req, res) {
     let skills = req.body.skills;
     let type = req.body.type;
     let maxAmount = req.body.maxAmount;
-    const id = req.body.id;
+    const organizationId = req.body.organizationId;
 
-    pool.query("INSERT INTO task (type, organizationId, description, skills, maxAmount) values (?, ?, ?, ?, ?)", [type, id, description, skills, maxAmount], function (err, data) {
+    pool.query("INSERT INTO task (type, organizationId, description, skills, maxAmount) values (?, ?, ?, ?, ?)", [type, organizationId, description, skills, maxAmount], function (err, data) {
         if (err) return console.log(err);
 
         res.json(data);

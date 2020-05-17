@@ -38,7 +38,7 @@ export class OrganizationServiceService {
     return this.httpClient.delete<Organization>('http://localhost:8080/delete_organization/' + id);
   }
 
-  createTask(id: number, taskData: NewTaskModel): Observable<NewTaskModel> {
+  createTask(taskData: NewTaskModel): Observable<NewTaskModel> {
     return this.httpClient.post<NewTaskModel>('http://localhost:8080/create_task', taskData); //id?
 
   }

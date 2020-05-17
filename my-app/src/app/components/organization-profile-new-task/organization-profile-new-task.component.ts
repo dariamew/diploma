@@ -46,12 +46,13 @@ export class OrganizationProfileNewTaskComponent implements OnInit {
 
   onSubmit(id: number) {
       let taskData : NewTaskModel = {
+        organizationId: id,
         description: this.newTaskFormGroup.controls.description.value,
         skills: this.newTaskFormGroup.controls.skills.value,
         type: this.newTaskFormGroup.controls.type.value,
         maxAmount: this.newTaskFormGroup.controls.maxAmount.value,
       };
-      this.organizationService.createTask(id, taskData).subscribe(data => {
+      this.organizationService.createTask(taskData).subscribe(data => {
         console.log(data);
       });
   }
