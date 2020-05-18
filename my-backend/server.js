@@ -426,6 +426,19 @@ app.get("/admin_profile", function (req, res) {
     });
 });
 
+//получить профиль организации
+app.get("/organization/:id", function (req, res) {
+
+    const id = req.params.id;
+
+    pool.query("SELECT * FROM organization WHERE id=?", [id], function (err, data) {
+        if (err) return console.log(err);
+
+        console.log(data);
+        res.json(data);
+    });
+});
+
 //редактировать профиль студента
 app.post("/edit_student/:id", function (req, res) {
 
@@ -548,14 +561,26 @@ app.delete("/delete_task/:id", function (req, res) {
     });
 });
 
+//получить задачу в роли организации перед редактированием
+app.get("/get_task/:id", function (req, res) {
+
+    const id = req.params.id;
+
+    pool.query("SELECT * from task WHERE id=?", [id], function (err, data) {
+        if (err) return console.log(err);
+
+        res.json(data);
+    });
+});
+
 //редактировать задачу в роли организации
 app.post("/edit_task/:id", function (req, res) {
 
     let description = req.body.description;
-    let skills = req.body.address;
+    let skills = req.body.skills;
     let type = req.body.type;
     let maxAmount = req.body.maxAmount;
-    const id = req.body.id;
+    const id = req.params.id;
 
     pool.query("UPDATE task SET description=?, skills=?, type=?, maxAmount=? WHERE id=?", [description, skills, type, maxAmount, id], function (err, data) {
         if (err) return console.log(err);
@@ -649,6 +674,7 @@ app.delete("/admin_tasks/:id", function (req, res) {
         res.json(data);
     });
 });
+
 // получить задачу, перед тем, как редактировать в роли администратора
 app.get("/admin_tasks/:id", function (req, res) {
 

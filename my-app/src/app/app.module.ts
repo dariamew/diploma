@@ -32,6 +32,7 @@ import { AdminProfileComponent } from './components/home/admin-profile/admin-pro
 import { AdminProfileFeedbackComponent } from './components/admin-profile-feedback/admin-profile-feedback.component';
 import { AdminProfileTasksComponent } from './components/admin-profile-tasks/admin-profile-tasks.component';
 import { JwtInterceptorInterceptor } from './helpers/jwt-interceptor.interceptor';
+import { OrganizationProfileEditTaskComponent } from './components/organization-profile-edit-task/organization-profile-edit-task.component';
 
 
 @NgModule({
@@ -63,7 +64,8 @@ import { JwtInterceptorInterceptor } from './helpers/jwt-interceptor.interceptor
     OrganizationSendInvitationComponent,
     AdminProfileComponent,
     AdminProfileFeedbackComponent,
-    AdminProfileTasksComponent
+    AdminProfileTasksComponent,
+    OrganizationProfileEditTaskComponent
   ],
   imports: [
     BrowserModule,

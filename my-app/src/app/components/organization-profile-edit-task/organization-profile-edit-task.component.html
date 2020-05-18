@@ -1,0 +1,16 @@
+<div class="form-container">
+  <h2 class="form-title">Редактировать задачу</h2>
+  <form [formGroup]="editTaskFormGroup" (ngSubmit)="onSubmit(task.id)">
+    <div class="input-container">
+      <label for="description">Описание</label>
+      <input id="description" formControlName="description">
+      <label for="skills">Навыки</label>
+      <input id="skills" formControlName="skills">
+      <label for="type">Тип</label>
+      <input id="type" formControlName="type">
+      <label for="maxAmount">Количество мест</label>
+      <input id="maxAmount" formControlName="maxAmount">
+    </div>
+    <button type="submit" class="button">Сохранить</button>
+  </form>
+</div>

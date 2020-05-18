@@ -11,7 +11,7 @@
     <div class="button-container">
       <span class="id-span"># {{taskElement.id}}</span>
       <button class="button small" (click)="deleteTask(taskElement.id)">Удалить</button>
-      <button class="button small">Изменить</button>
+      <button class="button small"> <a [routerLink]="['/edit_task', taskElement.id]">Изменить</a></button>
     </div>
   </div>
 </div>

@@ -9,6 +9,7 @@ import { map } from 'rxjs/operators';
 import { EditOrganizationModel } from '../../../models/editOrganizationModel';
 import { NewTaskModel } from 'src/app/models/newTaskModel';
 import { TaskModel } from '../../../models/taskModel'
+import { EditTaskModel } from 'src/app/models/editTaskModel';
 
 @Injectable({
   providedIn: 'root'
@@ -48,11 +49,16 @@ export class OrganizationServiceService {
     return this.httpClient.get<TaskModel[]>('http://localhost:8080/get_tasks/'+ id);
 
   }
-  
-  // editTask(id: number, editData: NewTaskModel): Observable<NewTaskModel> {
-  //   return this.httpClient.post<NewTaskModel>('http://localhost:8080/edit_organization/' + id, editData);
 
-  // }
+  getTask(id: string): Observable<TaskModel> {
+    return this.httpClient.get<TaskModel>('http://localhost:8080/get_task/'+ id);
+
+  }
+  
+  editTask(id: number, editData: EditTaskModel): Observable<EditTaskModel> {
+    return this.httpClient.post<EditTaskModel>('http://localhost:8080/edit_task/' + id, editData);
+
+  }
 
   deleteTask(id: number): Observable<TaskModel> {
     return this.httpClient.delete<TaskModel>('http://localhost:8080/delete_task/' + id);
