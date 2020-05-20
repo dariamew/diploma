@@ -1,0 +1,15 @@
+<div class="form-container">
+    <h2 class="form-title">Добавить навыки</h2>
+    <form [formGroup]="addSkillsFormGroup" (ngSubmit)="onSubmit(student.id)">
+        <div class="input-container">
+        <input id="fio" formControlName="firstSkill">
+        <input id="faculty" formControlName="secondSkill">
+        <input id="group" formControlName="thirdSkill">
+        <input id="tel" formControlName="fourthSkill">
+        <input id="portfolio" formControlName="fifthSkill">
+        <input id="contacts" formControlName="sixthSkill">
+        <input id="contacts" formControlName="seventhSkill">
+        </div>
+        <button type="submit" class="button">Добавить</button>
+    </form>
+</div>

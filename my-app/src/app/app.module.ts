@@ -33,6 +33,7 @@ import { AdminProfileFeedbackComponent } from './components/admin-profile-feedba
 import { AdminProfileTasksComponent } from './components/admin-profile-tasks/admin-profile-tasks.component';
 import { JwtInterceptorInterceptor } from './helpers/jwt-interceptor.interceptor';
 import { OrganizationProfileEditTaskComponent } from './components/organization-profile-edit-task/organization-profile-edit-task.component';
+import { StudentProfileAddSkillsComponent } from './components/student-profile-add-skills/student-profile-add-skills.component';
 
 
 @NgModule({
@@ -65,7 +66,8 @@ import { OrganizationProfileEditTaskComponent } from './components/organization-
     AdminProfileComponent,
     AdminProfileFeedbackComponent,
     AdminProfileTasksComponent,
-    OrganizationProfileEditTaskComponent
+    OrganizationProfileEditTaskComponent,
+    StudentProfileAddSkillsComponent
   ],
   imports: [
     BrowserModule,

@@ -5,6 +5,7 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { OrganizationServiceService } from 'src/app/services/userServices/organization/organization-service.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { TaskModel } from '../../../models/taskModel';
+import { StudentServiceService } from 'src/app/services/userServices/student/student-service.service';
 
 @Component({
   selector: 'app-organization-profile',
@@ -17,12 +18,13 @@ export class OrganizationProfileComponent implements OnInit {
   task : TaskModel[] = [];
 
   feedbackData = [
-    { name: "Ростелеком", date: "21.22.1998", text: "Очень хвалебный отзыв о работе",  },
-    { name: "Ростелеком", date: "21.22.1998", text: "Очень хвалебный отзыв о работе",  },
-    { name: "Ростелеком", date: "21.22.1998", text: "Очень хвалебный отзыв о работе", }
+    { name: "Студент", date: "21.22.1998", text: "Очень хвалебный отзыв о работе",  },
+    { name: "Другой студент", date: "21.22.1998", text: "Очень хвалебный отзыв о работе",  },
+    { name: "Третий студент", date: "21.22.1998", text: "Очень хвалебный отзыв о работе", }
   ]
 
-  constructor(private activatedRoute: ActivatedRoute, private organizationService: OrganizationServiceService, private authService: AuthService) { }
+  constructor(private activatedRoute: ActivatedRoute, private organizationService: OrganizationServiceService, private authService: AuthService, 
+    public router: Router, private studentService: StudentServiceService) { }
 
   ngOnInit(): void {
     console.log("OrganizationComponent init")
@@ -43,5 +45,12 @@ export class OrganizationProfileComponent implements OnInit {
   logout() {
     this.authService.logout(true);
   }
+
+  sendRequest(id: number) {
+    this.studentService.sendRequestion(id).subscribe(data => {
+      console.log(data);
+    });
+  }
+
 
 }

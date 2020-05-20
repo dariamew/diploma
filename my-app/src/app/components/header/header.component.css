@@ -37,12 +37,15 @@ nav {
 .counter {
     width: 100px;
     text-align: center;
-    border: 1px solid white;
     border-radius: 5px;
     margin-left: 44px;
     background-color: white;
     color:black;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    font-size: 8px;
+}
+.counter-result {
+    font-size: 10px;
 }
 .lists-block {
     width: 300px;
@@ -59,12 +62,13 @@ nav {
 }
 
 .registration-style {
+    position: relative;
+    top: -5px;
     width: 90px;
     background-color: white;
     border-radius: 5px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     padding: 5px;
-    margin-top: -4px;
 }
 .registration-link {
     color: black;

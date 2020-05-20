@@ -25,6 +25,7 @@ h3 {
 }
 .task-title {
     font-size: 18px;
+    text-align: center;
 }
 .task-container {
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -33,8 +34,6 @@ h3 {
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 10px;
-    display: flex;
-    justify-content: space-between;
     font-size: 12px;
 }
 .task-text {
@@ -42,6 +41,7 @@ h3 {
 }
 .feedback-title {
     font-size: 18px;
+    text-align: center;
 }
 .feedback-container {
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -58,4 +58,56 @@ h3 {
 }
 .feedback-name {
     font-size: 18px;
+}
+
+.button {
+    background-color: none;
+    border: none;
+    color: white;
+    display: block;
+    background-color: #FF4D00;
+    text-align: center;
+    border-radius: 5px;
+    padding: 20px;
+    width: 250px ;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    font-size: 20px;
+    margin-bottom: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50px;
+}
+.button:hover {
+    background: linear-gradient(180deg, rgba(255,77,0,0.8130602582830007) 50%, rgba(255,0,10,0.7178221630449055) 99%);
+}
+.small {
+    padding: 10px;
+    font-size: 15px;
+    width: 120px;
+    margin: 0;
+    margin-bottom: 5px;
+    margin-top: 5px;
+}
+.flex-container {
+    display: flex;
+    justify-content: space-between;
+}
+.menu {
+    list-style: none;
+    width: 103px;
+    padding: 14px;
+    margin-left: 28px;
+    border-radius: 5px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+.menu-element {
+    margin: 10px;
+    font-size: 11px;
+}
+.menu-element a:hover {
+    color: #FF4D00;
+}
+.menu-element a {
+    text-decoration: none;
+    color:black;
 }

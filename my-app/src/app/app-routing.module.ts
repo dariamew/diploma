@@ -22,6 +22,7 @@ import { OrganizationProfileEditComponent } from './components/organization-prof
 import { OrganizationProfileTaskListComponent } from './components/organization-profile-task-list/organization-profile-task-list.component';
 import { OrganizationProfileNewTaskComponent } from './components/organization-profile-new-task/organization-profile-new-task.component';
 import { OrganizationProfileEditTaskComponent } from './components/organization-profile-edit-task/organization-profile-edit-task.component';
+import { StudentProfileAddSkillsComponent } from './components/student-profile-add-skills/student-profile-add-skills.component';
 
 const routes: Routes = [
   { path: '', component: IntroComponent },
@@ -32,12 +33,13 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     children: [
       { path: "student", component: StudentProfileComponent },
-      { path: "student/:id", component: StudentProfileComponent },
       { path: "organization", component: OrganizationProfileComponent },
-      { path: "organization/:id", component: OrganizationProfileComponent }
     ] 
   },
+  { path: "organization/:id", component: OrganizationProfileComponent },
+  { path: "student/:id", component: StudentProfileComponent },
   { path: "edit_student", component: StudentProfileEditComponent },
+  { path: "add_skills", component: StudentProfileAddSkillsComponent },
   { path: "edit_organization", component: OrganizationProfileEditComponent },
   { path: "organization_tasks", component: OrganizationProfileTaskListComponent },
   { path: "new_task", component: OrganizationProfileNewTaskComponent },

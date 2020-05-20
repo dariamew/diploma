@@ -12,6 +12,7 @@ import { Organization } from '../../models/users/organization';
   styleUrls: ['./organization-list.component.css']
 })
 export class OrganizationListComponent implements OnInit {
+  
   organization : Organization;
   organizations: OrganizationModel[] = [];
 

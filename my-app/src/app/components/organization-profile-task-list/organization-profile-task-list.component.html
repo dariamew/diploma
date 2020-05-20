@@ -1,7 +1,7 @@
 <div>
   <div class="container">
     <h2 class="task-title">Список задач</h2>
-    <button class="button new-task"><a routerLink="/new_task">+ Добавить новую задачу</a></button>
+    <button class="button new-task"><a class="a-button" routerLink="/new_task">+ Добавить новую задачу</a></button>
   </div>
   <div class="task-container" *ngFor="let taskElement of task">
     <p><span class="task-text">Описание</span> <br> {{taskElement.description}}</p>
@@ -11,7 +11,7 @@
     <div class="button-container">
       <span class="id-span"># {{taskElement.id}}</span>
       <button class="button small" (click)="deleteTask(taskElement.id)">Удалить</button>
-      <button class="button small"> <a [routerLink]="['/edit_task', taskElement.id]">Изменить</a></button>
+      <button class="button small"> <a class="a-button" [routerLink]="['/edit_task', taskElement.id]">Изменить</a></button>
     </div>
   </div>
 </div>

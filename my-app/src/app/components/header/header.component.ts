@@ -17,7 +17,8 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.counterService.getCounter().subscribe(result => {
-      this.counter = result;
+      this.counter = result[0];
+      console.log(this.counter);
     }, error => console.log(error));
   }
 

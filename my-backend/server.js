@@ -426,7 +426,7 @@ app.get("/admin_profile", function (req, res) {
     });
 });
 
-//получить профиль организации
+//получить профиль организации, просто для просмотра
 app.get("/organization/:id", function (req, res) {
 
     const id = req.params.id;
@@ -434,8 +434,41 @@ app.get("/organization/:id", function (req, res) {
     pool.query("SELECT * FROM organization WHERE id=?", [id], function (err, data) {
         if (err) return console.log(err);
 
-        console.log(data);
-        res.json(data);
+        let user = data[0];
+
+        if (user) {
+            console.info(`Найден ссылочный пользователь с id: ${user.id}`);
+        } else {
+            console.error("Пользователь найден, но в массиве результата его нет");
+            return response.sendStatus(404);
+        }
+
+        return res.json({
+            userData: user
+        });
+    });
+});
+
+//получить профиль студента, просто для просмотра
+app.get("/student/:id", function (req, res) {
+
+    const id = req.params.id;
+
+    pool.query("SELECT * FROM student WHERE id=?", [id], function (err, data) {
+        if (err) return console.log(err);
+
+        let user = data[0];
+
+        if (user) {
+            console.info(`Найден ссылочный пользователь с id: ${user.id}`);
+        } else {
+            console.error("Пользователь найден, но в массиве результата его нет");
+            return response.sendStatus(404);
+        }
+
+        return res.json({
+            userData: user
+        });
     });
 });
 
@@ -478,6 +511,53 @@ app.delete("/delete_student/:id", function (req, res) {
         res.json(data);
     });
 
+});
+
+//отправить заявку на задачу в роли студента
+app.post("/send_requestion", function (req, res) {
+
+    let studentId = req.body.name;
+    let taskId = req.body.name;
+
+    pool.query("INSERT INTO ticket studentId=?, taskId=?", [studentId, taskId ], function (err, data) {
+        if (err) return console.log(err);
+
+        res.json(data);
+    });
+});
+
+//добавить умения для студента
+app.post("/add_skills", function (req, res) {
+
+    let studentId = req.body.studentId;
+    let firstSkill = req.body.firstSkill; 
+    let secondSkill = req.body.secondSkill;
+    let thirdSkill = req.body.thirdSkill;
+    let fourthSkill = req.body.fourthSkill;
+    let fifthSkill = req.body.fifthSkill;
+    let sixthSkill = req.body.sixthSkill;
+    let seventhSkill = req.body.seventhSkill;
+
+    let addSkillsQuery = "INSERT INTO skill (studentId, firstSkill, secondSkill, thirdSkill, fourthSkill, fifthSkill, sixthSkill, seventhSkill) VALUES(?,?,?,?,?,?,?,?)";
+
+    pool.query(addSkillsQuery, [studentId, firstSkill, secondSkill, thirdSkill, fourthSkill, fifthSkill, sixthSkill, seventhSkill], function (err, data) {
+        if (err) return console.log(err);
+
+        res.json(data);
+    });
+});
+
+//получить умения студента
+app.get("/get_skills/:id", function (req, res) {
+
+    const studentId = req.params.id;
+
+    pool.query("SELECT * FROM skill WHERE studentId =?", [studentId], function (err, data) {
+        if (err) return console.log(err);
+
+        console.log(data);
+        res.json(data);
+    });
 });
 
 //редактировать профиль организации

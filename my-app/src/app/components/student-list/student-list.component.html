@@ -6,7 +6,7 @@
                 <p class="user-value">{{user.faculty}}</p>
                 <p class="user-title">Номер группы</p>
                 <p class="user-value">{{user.groupNumber}}</p>
-                <a class="link-style" routerLink="">Перейти к профилю</a>
+                <a class="link-style" [routerLink]="['/student', user.id]">Перейти к профилю</a>
         </div>
     </div>
 </div>

@@ -24,6 +24,4 @@ export class AdminServiceService {
   //   return this.hhtpClient.get<OrganizationModel[]>('http://localhost:8080/admin_feedback');
   // }
   
-
-  
 }
