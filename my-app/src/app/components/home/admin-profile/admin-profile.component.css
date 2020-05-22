@@ -27,3 +27,8 @@ a {
     flex-direction: column;
     justify-content: space-between;
 }
+.title {
+    text-align: center;
+    font-size: 28px;
+    font-weight: 400;
+}

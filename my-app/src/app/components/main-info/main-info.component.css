@@ -38,6 +38,7 @@
 }
 .image-container {
     height: 409px;
+    margin-right: 60px;
 }
 a {
     text-decoration: none;

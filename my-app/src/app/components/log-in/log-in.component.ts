@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
+import { catchError, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-log-in',
@@ -30,8 +31,11 @@ export class LogInComponent implements OnInit {
       email: this.loginFormGroup.controls.email.value,
       password: this.loginFormGroup.controls.password.value,
     };
-    this.authService.login(loginData.email, loginData.password).subscribe(data => {
-      console.log(data);
-      });
+    this.authService.login(loginData.email, loginData.password)
+      .subscribe(
+        data => console.log(data), 
+        error => {
+          if (error.status == 404) alert("Неправильная почта или пароль, попробуйте снова.")
+        });
   }
 }

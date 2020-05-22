@@ -26,7 +26,7 @@ export class AuthGuard implements CanActivate, CanActivateChild {
 
         if (state.url == this.homeRoute) {
           return this.resolveRoute(authenticatedUserType);
-        } else if (state.url.includes(this.homeStudentRoute) || state.url.includes(this.homeOrganizationRoute)) {
+        } else if (state.url.includes(this.homeStudentRoute) || state.url.includes(this.homeOrganizationRoute) || state.url.includes(this.homeAdminRoute )) {
           return this.resolveSubRoute(state, authenticatedUserType);
         }
       } 
@@ -51,6 +51,10 @@ export class AuthGuard implements CanActivate, CanActivateChild {
       case AuthService.organizationUserType:
         console.log("redirect to home/organization");
         this.router.navigate([this.homeOrganizationRoute]);
+        break;
+        case AuthService.adminUserType:
+        console.log("redirect to home/admin");
+        this.router.navigate([this.homeAdminRoute]);
         break;
       default:
         console.log("redirect to login, cant parse role: ", role);
@@ -83,6 +87,8 @@ export class AuthGuard implements CanActivate, CanActivateChild {
         return state.url.includes(this.homeStudentRoute);
       case AuthService.organizationUserType:
         return state.url.includes(this.homeOrganizationRoute);
+      case AuthService.adminUserType:
+        return state.url.includes(this.homeAdminRoute);
       default:
         return false;
     }

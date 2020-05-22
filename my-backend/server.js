@@ -62,6 +62,56 @@ function getTableNameByRole(role) { //функция для возвращени
     }
 }
 
+//регистрация администратора
+app.post("/signup/admin", (request, response) => {
+
+    let email = request.body.email;
+    let password = request.body.password;
+    let name = request.body.name;
+
+    let insertAdminSQLQuery = "insert into admin (name) values (?)";
+    let insertAdminSQLParameters = [name];
+
+    pool.query(insertAdminSQLQuery, insertAdminSQLParameters, (insertAdminError, insertAdminResult) => {
+        
+        if (insertAdminError) {
+            console.error("Не удалось сохранить админа.", insertAdminError);
+            return response.sendStatus(500);
+        }
+
+        console.info(`Удачное сохранение администратора с id: ${insertAdminResult.insertId}`);
+
+        let insertUserSQLQuery = "insert into users (email, password, role, referenceId) values (?, ?, ?, ?)";
+        let insertUserSQLParameters = [email, password, adminUserType, insertAdminResult.insertId];
+
+        pool.query(insertUserSQLQuery, insertUserSQLParameters, (insertUserError, insertUserResult) => {
+
+            if (insertUserError) {
+                console.error("Не удалось сохранить пользователя.", insertUserError);
+                return response.sendStatus(500);
+            }
+
+            console.info(`Удачное сохранение пользователя с id: ${insertUserResult.insertId}`);
+
+            let accessToken = jwt.sign({ 
+                userId: insertUserResult.insertId, 
+                role: adminUserType, 
+                referenceId: insertAdminResult.insertId 
+            }, accessTokenSecret);
+
+            let userData = { // Здесь лежат все публичные данные об админе, которые нужно вернуть пользователю
+                id: insertAdminResult.insertId,
+                name: name
+            }
+
+            return response.json({
+                accessToken: accessToken,
+                userData: userData
+            });
+        });
+    });
+});
+
 //регистрация студента
 app.post("/signup/student", (request, response) => {
 
@@ -246,7 +296,7 @@ const checkAuthorizationMiddleware = (request, response, next) => { // функ�
             let jwtDataDecoded = jwt.decode(accessToken);
 
             console.log(`Декодированные данные из jwt: ${JSON.stringify(jwtDataDecoded)}`);
-            request.jwtData = jwtData;
+            request.jwtData = jwtData; //для запроса!!!!!!!
             next();
         });
 
@@ -514,12 +564,13 @@ app.delete("/delete_student/:id", function (req, res) {
 });
 
 //отправить заявку на задачу в роли студента
-app.post("/send_requestion", function (req, res) {
+app.post("/send_requestion", checkAuthorizationMiddleware, function (req, res) {
 
-    let studentId = req.body.name;
-    let taskId = req.body.name;
+    let studentId = jwtData.id;
+    let taskId = req.body.id;
+    let stateId = 1;
 
-    pool.query("INSERT INTO ticket studentId=?, taskId=?", [studentId, taskId ], function (err, data) {
+    pool.query("INSERT INTO ticket studentId=?, taskId=?, stateId=? VALUES (?,?,?)", [studentId, taskId, stateId], function (err, data) {
         if (err) return console.log(err);
 
         res.json(data);

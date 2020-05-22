@@ -23,6 +23,7 @@ import { OrganizationProfileTaskListComponent } from './components/organization-
 import { OrganizationProfileNewTaskComponent } from './components/organization-profile-new-task/organization-profile-new-task.component';
 import { OrganizationProfileEditTaskComponent } from './components/organization-profile-edit-task/organization-profile-edit-task.component';
 import { StudentProfileAddSkillsComponent } from './components/student-profile-add-skills/student-profile-add-skills.component';
+import { OrganizationProfileRequestListComponent } from './components/organization-profile-request-list/organization-profile-request-list.component';
 
 const routes: Routes = [
   { path: '', component: IntroComponent },
@@ -34,6 +35,7 @@ const routes: Routes = [
     children: [
       { path: "student", component: StudentProfileComponent },
       { path: "organization", component: OrganizationProfileComponent },
+      { path: "admin", component: AdminProfileComponent }
     ] 
   },
   { path: "organization/:id", component: OrganizationProfileComponent },
@@ -46,7 +48,7 @@ const routes: Routes = [
   { path: 'student_list', component: StudentListComponent },
   { path: 'organization_list', component: OrganizationListComponent },
   { path: "edit_task/:id", component: OrganizationProfileEditTaskComponent },
-  // {path: 'admin', component: AdminProfileComponent},
+  { path: "organization_requests", component: OrganizationProfileRequestListComponent },
   { path: 'admin_tasks', component: AdminProfileTasksComponent },
   { path: 'admin_feedback', component: AdminProfileFeedbackComponent },
   { path: "**", component: SignUpComponent }

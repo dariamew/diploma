@@ -21,7 +21,6 @@ export class AuthService {
   private static authenticatedDataStorageKey = "authenticated-user";
 
   constructor(private httpClient: HttpClient, private router: Router) {
-    this.logout(false);
   }
 
   signUpOrganization(organization: OrganizationModel): Observable<SignInResult> { // регистрация организации
@@ -58,9 +57,10 @@ export class AuthService {
   }
 
   isAuthenticated(): boolean { // проверяет, авторизован ли пользователь
+    console.log(localStorage.getItem(AuthService.authenticatedDataStorageKey));
     let isAuthenticated = !isNullOrUndefined(localStorage.getItem(AuthService.authenticatedDataStorageKey));
     console.log("isAuthenticated", isAuthenticated);
-    return isAuthenticated
+    return isAuthenticated;
   }
 
   authenticatedUserType(): number { // определяет роль авторизованного пользователя

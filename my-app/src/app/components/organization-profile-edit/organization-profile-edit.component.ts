@@ -28,17 +28,22 @@ export class OrganizationProfileEditComponent implements OnInit {
       flatMap(id => this.organizationService.getOrganization(id)),
       tap(organization => console.log("fetch organization result: ", organization)),
       tap(organization => this.organization = organization),
-      tap(organization => this.editProfileFormGroup.setValue({
-      name: `${organization.name}`,
-      description: `${organization.description}`,
-      address: `${organization.address}`,
-      tel: `${organization.tel}`}))
+      tap(organization => this.fillForm(organization))
     ).subscribe();
    console.log(this.editProfileFormGroup.value);
-  }
+    }
 
   private initForm() {
     this.initEditProfileFormGroup();
+  }
+
+  private fillForm(organization: Organization) {
+    this.editProfileFormGroup.setValue({
+      name: `${organization.name}`,
+      description: `${organization.description}`,
+      address: `${organization.address}`,
+      tel: `${organization.tel}`
+    });
   }
 
   private initEditProfileFormGroup() {

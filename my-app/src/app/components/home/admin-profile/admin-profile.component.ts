@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Admin } from '../../../models/users/admin';
 import { flatMap, map, tap } from 'rxjs/operators';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-admin-profile',
@@ -10,9 +11,13 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 })
 export class AdminProfileComponent implements OnInit {
 
-  constructor() { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
+  }
+
+  logout() {
+    this.authService.logout(true);
   }
 
 }

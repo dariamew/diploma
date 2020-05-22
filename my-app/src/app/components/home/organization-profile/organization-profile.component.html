@@ -1,21 +1,21 @@
 <ul class="menu" *ngIf="router.url === '/home/organization'">
     <li class="menu-element"><a routerLink="/edit_organization">Редактировать профиль</a></li>
     <li class="menu-element"><a routerLink="/organization_tasks">Задачи</a></li>
-    <li class="menu-element"><a routerLink="/login">Заявки</a></li>
+    <li class="menu-element"><a routerLink="/organization_requests">Заявки</a></li>
     <li class="menu-element"><a (click)="logout()">Выход</a></li>
   </ul>
 <div class="container">
-    <h2 class="info-title">{{organization.name}}</h2>
+    <p class="info-title">{{organization.name}}</p>
         <div class="info-container">
-            <h3>О предприятии</h3>
+            <p class="about">О предприятии</p>
             <p class="info-text">{{organization.description}}</p>
-            <h3 class="contacts-title">Контакты</h3>
+            <p class="contacts-title about">Контакты</p>
             <p class="info-text">Телефон: {{organization.tel}}</p>
             <p class="info-text">Адрес: {{organization.address}} </p>
         </div>
 </div>
 <div>
-    <h2 class="task-title">Задачи</h2>
+    <p class="title">Задачи</p>
         <div class="task-container" *ngFor="let taskElement of task">
             <div class="flex-container">
                 <p ><span class="task-text">Описание</span> <br> {{taskElement.description}}</p>
@@ -29,7 +29,7 @@
         </div>
 </div>
 <div>
-    <h2 class="feedback-title">Отзывы</h2>
+    <p class="title">Отзывы</p>
         <div class="feedback-container" *ngFor="let feedbackElement of feedbackData">
             <p class="feedback-name">{{feedbackElement.name}}</p>
             <p class="feedback-date">{{feedbackElement.date}}</p>
