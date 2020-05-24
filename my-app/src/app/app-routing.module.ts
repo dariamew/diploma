@@ -24,6 +24,7 @@ import { OrganizationProfileNewTaskComponent } from './components/organization-p
 import { OrganizationProfileEditTaskComponent } from './components/organization-profile-edit-task/organization-profile-edit-task.component';
 import { StudentProfileAddSkillsComponent } from './components/student-profile-add-skills/student-profile-add-skills.component';
 import { OrganizationProfileRequestListComponent } from './components/organization-profile-request-list/organization-profile-request-list.component';
+import { OrganizationProfileFeedbackComponent } from './components/organization-profile-feedback/organization-profile-feedback.component';
 
 const routes: Routes = [
   { path: '', component: IntroComponent },
@@ -45,6 +46,7 @@ const routes: Routes = [
   { path: "edit_organization", component: OrganizationProfileEditComponent },
   { path: "organization_tasks", component: OrganizationProfileTaskListComponent },
   { path: "new_task", component: OrganizationProfileNewTaskComponent },
+  { path: "organization_feedback/:id", component: OrganizationProfileFeedbackComponent },
   { path: 'student_list', component: StudentListComponent },
   { path: 'organization_list', component: OrganizationListComponent },
   { path: "edit_task/:id", component: OrganizationProfileEditTaskComponent },

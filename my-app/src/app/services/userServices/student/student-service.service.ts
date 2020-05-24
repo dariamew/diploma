@@ -7,7 +7,6 @@ import { FetchStudentResult } from 'src/app/models/users/fetchStudentModel';
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { EditStudentModel } from '../../../models/editStudentModel';
-import { SendRequestionModel } from '../../../models/sendRequestionModel';
 import { SkillsModel } from 'src/app/models/skillsModel';
 
 @Injectable({
@@ -18,7 +17,6 @@ export class StudentServiceService {
   constructor(private httpClient: HttpClient) { }
   
   getStudent(id?: string): Observable<Student> {
-    // console.log("Пошла загрузка пользователя с id", id);
 
     if (isNullOrUndefined(id)) {
       return this.httpClient.get<FetchStudentResult>("http://localhost:8080/self").pipe(
@@ -48,12 +46,16 @@ export class StudentServiceService {
     return this.httpClient.delete<Student>('http://localhost:8080/delete_student/'+ id);
   }
 
-  sendRequestion(id: number): Observable<SendRequestionModel> {
-    return this.httpClient.post<SendRequestionModel>('http://localhost:8080/send_requestion', id);
+  sendRequestion(id: number): Observable<any> {
+    return this.httpClient.post<any>('http://localhost:8080/send_requestion', { id: id });
   }
 
+  // getRequestions(id: number): Observable<any> {
+  //   return this.httpClient.get<any>('http://localhost:8080/get_requestion', id);
+  // }
+
   // deleteRequestion(id: number): Observable<SendRequestionModel> {
-  //   return this.httpClient.post<SendRequestionModel>('http://localhost:8080/send_requestion', id);
+  //   return this.httpClient.delete<SendRequestionModel>('http://localhost:8080/delete_requestion'+id);
   // }
 
   // sendFeedback(id: number): Observable<SendRequestionModel> {

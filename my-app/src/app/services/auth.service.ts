@@ -71,7 +71,7 @@ export class AuthService {
 
   getAccessToken(): string {
     let signInResult: SignInResult = JSON.parse(localStorage.getItem(AuthService.authenticatedDataStorageKey));
-    console.log("acessToken: ", signInResult.accessToken);
+    console.log("accessToken: ", signInResult.accessToken);
     return signInResult.accessToken;
   }
 

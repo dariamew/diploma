@@ -447,26 +447,6 @@ app.post("apply-ticket", checkAuthorizationMiddleware, checkRoleMiddleware([stud
 // });
 
 
-// const authenticateJWT = (req, res, next) => {
-//     const authHeader = req.headers.authorization;
-
-//     if (authHeader) {
-//         const token = authHeader.split(' ')[1];
-
-//         jwt.verify(token, accessTokenSecret, (err, user) => {
-//             if (err) {
-//                 return res.sendStatus(403);
-//             }
-
-//             req.user = user;
-//             next();
-//         });
-//     } else {
-//         res.sendStatus(401);
-//     }
-// };
-
-
 app.get("/admin_profile", function (req, res) {
     pool.query("SELECT * FROM organization", function (err, data) {
         if (err) return console.log(err);
@@ -566,14 +546,22 @@ app.delete("/delete_student/:id", function (req, res) {
 //отправить заявку на задачу в роли студента
 app.post("/send_requestion", checkAuthorizationMiddleware, function (req, res) {
 
-    let studentId = jwtData.id;
+    let studentId = req.jwtData.referenceId;
     let taskId = req.body.id;
     let stateId = 1;
 
-    pool.query("INSERT INTO ticket studentId=?, taskId=?, stateId=? VALUES (?,?,?)", [studentId, taskId, stateId], function (err, data) {
+    pool.query(`SELECT organizationId from task WHERE id=${taskId}`,  function (errorIdData, orgIdData) {
+
+    if (errorIdData) return console.log(errorIdData);
+    console.log(orgIdData);
+    let organizationId = orgIdData[0].organizationId;
+    console.log(organizationId);
+
+    pool.query("INSERT INTO ticket (studentId, taskId, stateId, organizationId) VALUES (?,?,?,?)", [studentId, taskId, stateId, organizationId], function (err, data) {
         if (err) return console.log(err);
 
         res.json(data);
+        });
     });
 });
 
@@ -719,6 +707,79 @@ app.post("/edit_task/:id", function (req, res) {
         res.json(data);
     });
 });
+
+//получить новые заявки в роли организации
+app.get("/get_requestions/:id", function (req, res) {
+
+    const organizationId = req.params.id;
+    let stateId = 1;
+    let getNewRequestionsQuery = `SELECT * FROM ticket WHERE organizationId = "${organizationId}" AND stateId = "${stateId}"`;
+
+
+    pool.query(getNewRequestionsQuery, function (err, ticketData) {
+  
+        if (err) return console.log(err);
+        res.json(ticketData);
+
+    });
+});
+
+//получить заявки с принятым решением в роли организации
+app.get("/get_resolved_requestions/:id", function (req, res) {
+
+    const organizationId = req.params.id;
+    let stateId = 1;
+    let getRequestionsQuery = `SELECT * FROM ticket WHERE NOT stateId = "${stateId}" AND organizationId = "${organizationId}"`;
+
+
+    pool.query(getRequestionsQuery, function (err, ticketData) {
+  
+        if (err) return console.log(err);
+        res.json(ticketData);
+
+    });
+});
+
+
+//принять заявку в роли организации
+app.post("/accept_requestion", function (req, res) {
+
+    const id = req.body.id;
+    let stateId = 3;
+
+    pool.query("UPDATE ticket SET stateId=? WHERE id=?", [stateId, id], function (err, data) {
+        if (err) return console.log(err);
+
+        res.json(data);
+    });
+});
+
+//отклонить заявку в роли организации
+app.post("/reject_requestion", function (req, res) {
+
+    const id = req.body.id;
+    let stateId = 2;
+
+    pool.query("UPDATE ticket SET stateId=? WHERE id=?", [stateId, id], function (err, data) {
+        if (err) return console.log(err);
+
+        res.json(data);
+    });
+});
+
+// отправить отзыв в роли организации
+// app.post("/organization_feedback", function (req, res) {
+
+//     const id = req.body.id;
+//     let stateId = 3;
+
+//     pool.query("UPDATE ticket SET stateId=? WHERE id=?", [stateId, id], function (err, data) {
+//         if (err) return console.log(err);
+
+//         res.json(data);
+//     });
+// });s
+
 
 // получить список всех организаций
 app.get("/organization_list", function (req, res) {

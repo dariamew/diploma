@@ -1,34 +1,24 @@
 <div class="container">
     <p class="title">Список заявок</p>
     <p class="request-title">Новые заявки</p>
-    <div class="user-element" *ngFor="let user of userData">
-        <div>
-            <span class="id-span">#12399</span>
-            <p class="user-name">{{user.fio}}</p>
-            <p class="user-title">Направление </p>
-            <p class="user-value">{{user.faculty}}</p>
-            <p class="user-title">Номер группы</p>
-            <p class="user-value">{{user.group}}</p>
-            <a class="link-style" routerLink="">Перейти к профилю</a>
+    <div class="user-element" *ngFor="let requestion of requestions">
+        <p class="user-value">Номер заявки: {{requestion.id}} </p>
+        <p class="user-name">Заявка на задачу №{{requestion.taskId}}</p>
+        <a class="link-style" [routerLink]="['/student', requestion.studentId]">Перейти к профилю студента</a>
             <div class="button-container">
-                <button class="button small">Принять</button>
-                <button class="button small">Отклонить</button>
+            <button class="button small" (click)="acceptRequestion(requestion.id)">Принять</button>
+            <button class="button small" (click)="rejectRequestion(requestion.id)">Отклонить</button>
             </div>
     </div>
-</div>
+
 <p class="request-title">Рассмотренные заявки</p>
-<div class="user-element" *ngFor="let user of userData">
-    <div>
-        <span class="id-span">#12399</span>
-        <p class="user-name">{{user.fio}}</p>
-        <p class="user-title">Направление </p>
-        <p class="user-value">{{user.faculty}}</p>
-        <p class="user-title">Номер группы</p>
-        <p class="user-value">{{user.group}}</p>
-        <a class="link-style" routerLink="">Перейти к профилю</a>
+<div class="user-element" *ngFor="let requestion of resolvedRequestions">
+    <p class="user-value">Номер заявки: {{requestion.id}} </p>
+    <p class="user-name">Заявка на задачу №{{requestion.taskId}}</p>
+    <a class="link-style" [routerLink]="['/student', requestion.studentId]">Перейти к профилю студента</a>
         <div class="button-container">
-            <button class="button small">Оставить отзыв</button> 
-            <p>Принято</p>
+            <p> {{requestion.stateId}} </p>
+        <a class="button small" [routerLink]="['/organization_feedback', requestion.studentId]">Написать отзыв</a>
         </div>
 </div>
 </div>

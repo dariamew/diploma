@@ -10,6 +10,7 @@ import { EditOrganizationModel } from '../../../models/editOrganizationModel';
 import { NewTaskModel } from 'src/app/models/newTaskModel';
 import { TaskModel } from '../../../models/taskModel'
 import { EditTaskModel } from 'src/app/models/editTaskModel';
+import { RequestionList } from 'src/app/models/requestionList';
 
 @Injectable({
   providedIn: 'root'
@@ -62,6 +63,26 @@ export class OrganizationServiceService {
 
   deleteTask(id: number): Observable<TaskModel> {
     return this.httpClient.delete<TaskModel>('http://localhost:8080/delete_task/' + id);
+
+  }
+
+  getRequestions(id: number): Observable<RequestionList[]> {
+    return this.httpClient.get<RequestionList[]>('http://localhost:8080/get_requestions/'+ id);
+
+  }
+
+  getResolvedRequestions(id: number): Observable<RequestionList[]> {
+    return this.httpClient.get<RequestionList[]>('http://localhost:8080/get_resolved_requestions/'+ id);
+
+  }
+
+  acceptRequestion(id: number) {
+    return this.httpClient.post('http://localhost:8080/accept_requestion', {id: id});
+
+  }
+
+  rejectRequestion(id: number) {
+    return this.httpClient.post('http://localhost:8080/reject_requestion', {id: id});
 
   }
 
