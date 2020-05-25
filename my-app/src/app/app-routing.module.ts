@@ -25,6 +25,8 @@ import { OrganizationProfileEditTaskComponent } from './components/organization-
 import { StudentProfileAddSkillsComponent } from './components/student-profile-add-skills/student-profile-add-skills.component';
 import { OrganizationProfileRequestListComponent } from './components/organization-profile-request-list/organization-profile-request-list.component';
 import { OrganizationProfileFeedbackComponent } from './components/organization-profile-feedback/organization-profile-feedback.component';
+import { StudentProfileRequestListComponent } from './components/student-profile-request-list/student-profile-request-list.component';
+import { StudentProfileSendFeedbackComponent } from './components/student-profile-send-feedback/student-profile-send-feedback.component';
 
 const routes: Routes = [
   { path: '', component: IntroComponent },
@@ -47,10 +49,12 @@ const routes: Routes = [
   { path: "organization_tasks", component: OrganizationProfileTaskListComponent },
   { path: "new_task", component: OrganizationProfileNewTaskComponent },
   { path: "organization_feedback/:id", component: OrganizationProfileFeedbackComponent },
+  { path: "student_feedback/:id", component: StudentProfileSendFeedbackComponent },
   { path: 'student_list', component: StudentListComponent },
   { path: 'organization_list', component: OrganizationListComponent },
   { path: "edit_task/:id", component: OrganizationProfileEditTaskComponent },
   { path: "organization_requests", component: OrganizationProfileRequestListComponent },
+  { path: "student_requests", component: StudentProfileRequestListComponent },
   { path: 'admin_tasks', component: AdminProfileTasksComponent },
   { path: 'admin_feedback', component: AdminProfileFeedbackComponent },
   { path: "**", component: SignUpComponent }

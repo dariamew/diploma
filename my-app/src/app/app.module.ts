@@ -26,7 +26,6 @@ import { OrganizationProfileFeedbackComponent } from './components/organization-
 import { OrganizationProfileTaskListComponent } from './components/organization-profile-task-list/organization-profile-task-list.component';
 import { OrganizationProfileRequestListComponent } from './components/organization-profile-request-list/organization-profile-request-list.component';
 import { StudentProfileRequestListComponent } from './components/student-profile-request-list/student-profile-request-list.component';
-import { StudentProfileInvitationListComponent } from './components/student-profile-invitation-list/student-profile-invitation-list.component';
 import { OrganizationSendInvitationComponent } from './components/organization-send-invitation/organization-send-invitation.component';
 import { AdminProfileComponent } from './components/home/admin-profile/admin-profile.component';
 import { AdminProfileFeedbackComponent } from './components/admin-profile-feedback/admin-profile-feedback.component';
@@ -34,6 +33,7 @@ import { AdminProfileTasksComponent } from './components/admin-profile-tasks/adm
 import { JwtInterceptorInterceptor } from './helpers/jwt-interceptor.interceptor';
 import { OrganizationProfileEditTaskComponent } from './components/organization-profile-edit-task/organization-profile-edit-task.component';
 import { StudentProfileAddSkillsComponent } from './components/student-profile-add-skills/student-profile-add-skills.component';
+import { StudentProfileSendFeedbackComponent } from './components/student-profile-send-feedback/student-profile-send-feedback.component';
 
 
 @NgModule({
@@ -61,13 +61,13 @@ import { StudentProfileAddSkillsComponent } from './components/student-profile-a
     OrganizationProfileTaskListComponent,
     OrganizationProfileRequestListComponent,
     StudentProfileRequestListComponent,
-    StudentProfileInvitationListComponent,
     OrganizationSendInvitationComponent,
     AdminProfileComponent,
     AdminProfileFeedbackComponent,
     AdminProfileTasksComponent,
     OrganizationProfileEditTaskComponent,
-    StudentProfileAddSkillsComponent
+    StudentProfileAddSkillsComponent,
+    StudentProfileSendFeedbackComponent
   ],
   imports: [
     BrowserModule,

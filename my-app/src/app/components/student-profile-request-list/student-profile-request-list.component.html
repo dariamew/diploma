@@ -1,13 +1,10 @@
-<h3>Список отправленных заявок</h3>
-<div class="task-container" *ngFor="let taskElement of TaskData">
-    <p ><span class="task-text">Описание</span> <br> {{taskElement.description}}</p>
-    <p ><span class="task-text">Навыки</span> <br> {{taskElement.skills}}</p>
-    <p><span class="task-text">Тип</span> <br> {{taskElement.type}}</p>
-    <p ><span class="task-text">Количество мест</span> <br> {{taskElement.amount}}</p>
+<p class="title">Список отправленных заявок</p>
+<div class="task-container" *ngFor="let requestion of requestions">
+    <p class="requestion-number">Номер вашей заявки: {{requestion.id}} </p>
+    <p class="requestion-number">Статус вашей заявки: {{requestion.stateId}} </p>
+    <a class="link-style" [routerLink]="['/organization', requestion.organizationId]">Перейти к профилю организации</a>
         <div class="button-container">
-            <span class="id-span">#12359</span>
-            <button class="button small">Удалить</button>
-            <button class="button small">Оставить отзыв</button>
-            <span class="status-span">На рассмотрении 26.22.2020</span>
+            <button class="button small" (click)="deleteRequestion(requestion.id)">Удалить</button>
+            <a class="button small" [routerLink]="['/student_feedback', requestion.studentId]">Оставить отзыв</a>
         </div>
 </div>

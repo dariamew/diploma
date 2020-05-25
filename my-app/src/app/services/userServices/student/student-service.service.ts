@@ -8,6 +8,8 @@ import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { EditStudentModel } from '../../../models/editStudentModel';
 import { SkillsModel } from 'src/app/models/skillsModel';
+import { RequestionList } from 'src/app/models/requestionList';
+import { FeedbackModel } from 'src/app/models/feedbackModel';
 
 @Injectable({
   providedIn: 'root'
@@ -50,16 +52,17 @@ export class StudentServiceService {
     return this.httpClient.post<any>('http://localhost:8080/send_requestion', { id: id });
   }
 
-  // getRequestions(id: number): Observable<any> {
-  //   return this.httpClient.get<any>('http://localhost:8080/get_requestion', id);
-  // }
+  getRequestions(id: number): Observable<RequestionList[]> {
+    return this.httpClient.get<RequestionList[]>('http://localhost:8080/student_requestions/'+ id);
 
-  // deleteRequestion(id: number): Observable<SendRequestionModel> {
-  //   return this.httpClient.delete<SendRequestionModel>('http://localhost:8080/delete_requestion'+id);
-  // }
+  }
 
-  // sendFeedback(id: number): Observable<SendRequestionModel> {
-  //   return this.httpClient.post<SendRequestionModel>('http://localhost:8080/send_requestion', id);
-  // }
+  deleteRequestion (id: number): Observable<RequestionList> {
+    return this.httpClient.delete<RequestionList>('http://localhost:8080/delete_requestion/'+ id);
+  }
+
+  sendFeedback(feedbackData: FeedbackModel): Observable<FeedbackModel> {
+    return this.httpClient.post<FeedbackModel>('http://localhost:8080/student_feedback', feedbackData);
+  }
 
 }

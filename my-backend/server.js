@@ -565,6 +565,48 @@ app.post("/send_requestion", checkAuthorizationMiddleware, function (req, res) {
     });
 });
 
+//получить заявки в роли студента
+app.get("/student_requestions/:id", function (req, res) {
+
+    const studentId = req.params.id;
+
+    let getRequestionsQuery = `SELECT * FROM ticket WHERE studentId = "${studentId}"`;
+
+
+    pool.query(getRequestionsQuery, function (err, ticketData) {
+  
+        if (err) return console.log(err);
+        res.json(ticketData);
+
+    });
+});
+
+//отправить отзыв в роли студента
+app.post("/create_task", function (req, res) {
+
+    let mark = req.body.mark;
+    let text = req.body.text;
+
+    pool.query("INSERT INTO review (mark, text) values (?, ?, ?, ?, ?)", [type, organizationId, description, skills, maxAmount], function (err, data) {
+        if (err) return console.log(err);
+
+        res.json(data);
+    });
+});
+
+//удалить заявку в роли студента
+app.delete("/delete_requestion/:id", function (req, res) {
+
+    const id = req.params.id;
+
+    pool.query("DELETE FROM ticket WHERE id=?", [id], function (err, data) {
+        if (err) return console.log(err);
+
+        console.log(data);
+        res.json(data);
+    });
+});
+
 //добавить умения для студента
 app.post("/add_skills", function (req, res) {
 

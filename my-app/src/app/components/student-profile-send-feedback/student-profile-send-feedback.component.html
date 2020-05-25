@@ -1,0 +1,12 @@
+<div class="form-container">
+    <h2 class="form-title">Отзыв</h2>
+    <form [formGroup]="newFeedbackFormGroup" (onSubmit)="onSubmit()">
+        <div class="input-container">
+        <label for="mark">Оценка</label>
+        <input id="mark" formControlName="mark">
+        <label for="feedText">Текст отзыва</label>
+        <input id="feedText" formControlName="text">
+        </div>
+        <button type="submit" class="button">Отправить</button>
+    </form>
+</div>

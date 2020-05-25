@@ -10,6 +10,7 @@ import { OrganizationServiceService } from 'src/app/services/userServices/organi
   styleUrls: ['./organization-profile-feedback.component.css']
 })
 export class OrganizationProfileFeedbackComponent implements OnInit {
+  
   newFeedbackFormGroup: FormGroup;
 
   constructor(private formBuilder: FormBuilder, private organizationService: OrganizationServiceService ) { }

@@ -3,4 +3,5 @@ export interface RequestionList {
     taskId: number;
     studentId: number;
     stateId: number;
+    organizationId: number;
 }

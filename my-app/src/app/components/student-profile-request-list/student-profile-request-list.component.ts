@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { flatMap, map, tap } from 'rxjs/operators';
+import { RequestionList } from 'src/app/models/requestionList';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { StudentServiceService } from 'src/app/services/userServices/student/student-service.service';
+import { Student } from 'src/app/models/users/student';
 
 @Component({
   selector: 'app-student-profile-request-list',
@@ -7,16 +12,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StudentProfileRequestListComponent implements OnInit {
 
-  TaskData = [
-    { description: "Сделать сайт", skills: "HTML, CSS, PHP, SQL", type: "Практика", amount: "10" },
-    { description: "Сделать сайт", skills: "HTML, CSS, PHP, SQL", type: "Практика", amount: "10" },
-    { description: "Сделать сайт", skills: "HTML, CSS, PHP, SQL", type: "Практика", amount: "10" }
-  ];
+  student:  Student;
+  requestions: RequestionList[] = [];
 
-
-  constructor() { }
+  constructor(private activatedRoute: ActivatedRoute, private studentService: StudentServiceService) { }
 
   ngOnInit(): void {
+  
+    this.activatedRoute.paramMap.pipe(
+        tap(params => console.log("params", params)),
+        map(params => params.get("id")),
+        flatMap(id => this.studentService.getStudent(id)),
+        tap(student => this.student = student),
+        tap(student => this.studentService.getRequestions(student.id).subscribe(result => {
+          this.requestions = result;
+        })), 
+    ).subscribe();
+  }
+
+  deleteRequestion(id: number) {
+    this.studentService.deleteRequestion(id).subscribe(data => {
+      console.log(data);
+    });
   }
 
 }
