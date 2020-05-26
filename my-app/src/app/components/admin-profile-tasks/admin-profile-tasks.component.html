@@ -1,5 +1,5 @@
 <div>
-  <h2 class="task-title">Список задач</h2>
+  <p class="task-title">Список задач</p>
   <div class="container">
     <div class="task-container" *ngFor="let taskElement of tasks">
       <p><span class="task-text">Описание</span> <br> {{taskElement.description}}</p>
@@ -9,7 +9,6 @@
       <div class="button-container">
         <span class="id-span"># {{taskElement.id}}</span>
         <button class="button small" (click)="deleteTask(taskElement.id)">Удалить</button>
-        <button class="button small">Изменить </button>
       </div>
     </div>
   </div>

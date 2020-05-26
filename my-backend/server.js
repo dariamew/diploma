@@ -377,76 +377,6 @@ app.post("apply-ticket", checkAuthorizationMiddleware, checkRoleMiddleware([stud
 
 });
 
-// //регистрация организации
-// app.post("/signup/organization", function (req, res) {
-
-//     let name = req.body.name;
-//     let description = req.body.description;
-//     let address = req.body.address;
-//     let tel = req.body.tel;
-//     let email = req.body.email;
-//     let password = req.body.password;
-//     let role = req.body.role;
-
-
-//     pool.query("INSERT INTO users (email, password, role) VALUES (?,?,?)", [email, password, role], function (errWhileInsert, dataOnInsertComplited) {
-//         console.log("dataOnInsertComplited", dataOnInsertComplited.insertId, errWhileInsert);
-//         console.log("password", password);
-
-//         // pool.query("SELECT * from users WHERE email=?, password=?", [email, password], function (errWhileSelect, dataOnSelectComplited) {
-//         //     console.log("dataOnSelectComplited", dataOnSelectComplited, errWhileSelect);
-//         pool.query("INSERT INTO organization (userId ,name, description, address, tel) VALUES (?,?,?,?,?)", [dataOnInsertComplited.insertId, name, description, address, tel], function (err, data) {
-//             if (err) return console.log(err);
-//             res.sendStatus(200);
-//         });
-//         // });
-//     });
-// });
-
-
-
-
-//авторизация
-// app.post('/login', (req, res) => {
-//     // Read username and password from request body
-//     let email = req.body.email;
-//     let password = req.body.password;
-//     let query = 'SELECT * FROM users WHERE email="' + email + '" AND password="' + password + '"';
-//     pool.query(query, function (err, data) {
-//         // if (err) return console.log(err);
-
-//         //  console.log(data);
-//         // res.json(data);
-//         // if (data) {
-//         // Generate an access token
-//         const accessToken = jwt.sign({
-//             email: data.email,
-//             password: data.password,
-//             role: data.role
-//         }, accessTokenSecret);
-//         return res.json({
-//             accessToken
-//         });
-//         // } else {
-//         //     res.send('Username or password incorrect');
-//         // }
-//     });
-//     // Filter user from the users array by username and password
-//     // const user = users.find(u => { return u.email === email && u.password === password });
-
-//     // if (data) {
-//     //     // Generate an access token
-//     //     const accessToken = jwt.sign(data, accessTokenSecret);
-
-//     //     res.json({
-//     //         accessToken
-//     //     });
-//     // } else {
-//     //     res.send('Username or password incorrect');
-//     // }
-// });
-
-
 app.get("/admin_profile", function (req, res) {
     pool.query("SELECT * FROM organization", function (err, data) {
         if (err) return console.log(err);
@@ -582,15 +512,44 @@ app.get("/student_requestions/:id", function (req, res) {
 });
 
 //отправить отзыв в роли студента
-app.post("/create_task", function (req, res) {
+app.post("/student_feedback", checkAuthorizationMiddleware, function (req, res) {
 
+    let studentUserId = req.jwtData.userId;
+    let organizationId = req.body.id;
     let mark = req.body.mark;
     let text = req.body.text;
 
-    pool.query("INSERT INTO review (mark, text) values (?, ?, ?, ?, ?)", [type, organizationId, description, skills, maxAmount], function (err, data) {
+    let organizationUserIdQuery = `SELECT id from users WHERE referenceId="${organizationId}" AND role="${organizationUserType}" `; 
+    let studentFeedbackQuery = 'INSERT INTO review (senderUserId, receiverUserId, mark, text) values (?,?,?,?)';
+    
+    pool.query(organizationUserIdQuery, function (userIdError, userIdData) {
+
+        let organizationUserId = userIdData[0].id;
+
+    pool.query(studentFeedbackQuery, [studentUserId, organizationUserId, mark, text], function (err, data) {
         if (err) return console.log(err);
 
         res.json(data);
+        });
+    });
+});
+
+// получить отзывы для студента
+app.get("/student_feedback_list/:id",  function (req, res) {
+
+    let studentId = req.params.id;
+
+    let getUserIdQuery = `SELECT id from users WHERE referenceId="${studentId}" AND role="${studentUserType}" `;
+
+    pool.query(getUserIdQuery, function (err, userIdData) {
+
+    let studentUserId = userIdData[0].id;
+    let getReviewQuery = `SELECT mark, text, isCompleted from review WHERE receiverUserId="${studentUserId}"`;
+
+        pool.query(getReviewQuery, function (err, data) {
+
+            res.json(data);
+        });
     });
 });
 
@@ -809,18 +768,48 @@ app.post("/reject_requestion", function (req, res) {
     });
 });
 
-// отправить отзыв в роли организации
-// app.post("/organization_feedback", function (req, res) {
+//отправить отзыв в роли организации
+app.post("/organization_feedback", checkAuthorizationMiddleware, function (req, res) {
 
-//     const id = req.body.id;
-//     let stateId = 3;
+    let organizationUserId = req.jwtData.userId;
+    let studentId = req.body.id;
+    let mark = req.body.mark;
+    let text = req.body.text;
+    let isCompleted = req.body.isCompleted;
 
-//     pool.query("UPDATE ticket SET stateId=? WHERE id=?", [stateId, id], function (err, data) {
-//         if (err) return console.log(err);
+    let studentUserIdQuery = `SELECT id from users WHERE referenceId="${studentId}" AND role="${studentUserType}" `; 
+    let organizationFeedbackQuery = 'INSERT INTO review (senderUserId, receiverUserId, mark, text, isCompleted) values (?,?,?,?,?)';
+    
+    pool.query(studentUserIdQuery, function (userIdError, userIdData) {
 
-//         res.json(data);
-//     });
-// });s
+        let studentUserId = userIdData[0].id;
+
+    pool.query(organizationFeedbackQuery, [organizationUserId, studentUserId, mark, text, isCompleted], function (err, data) {
+        if (err) return console.log(err);
+
+        res.json(data);
+        });
+    });
+});
+
+// получить отзывы для организации
+app.get("/organization_feedback_list/:id",  function (req, res) {
+
+    let organizationId = req.params.id;
+
+    let getUserIdQuery = `SELECT id from users WHERE referenceId="${organizationId}" AND role="${organizationUserType}" `;
+
+    pool.query(getUserIdQuery, function (err, userIdData) {
+
+    let organizationUserId = userIdData[0].id;
+    let getReviewQuery = `SELECT mark, text from review WHERE receiverUserId="${organizationUserId}"`;
+
+        pool.query(getReviewQuery, function (err, data) {
+
+            res.json(data);
+        });
+    });
+});
 
 
 // получить список всех организаций
@@ -847,8 +836,8 @@ app.get("/student_list", function (req, res) {
 app.get("/counter", function (req, res) {
     pool.query("SELECT COUNT(*) as count FROM users", function (err, data) {
         if (err) return console.log(err);
-        console.log(data);
-        res.json(data);
+        console.log(data[0].count);
+        res.json(data[0].count);
     });
 });
 
@@ -910,29 +899,42 @@ app.delete("/admin_tasks/:id", function (req, res) {
 });
 
 // получить задачу, перед тем, как редактировать в роли администратора
-app.get("/admin_tasks/:id", function (req, res) {
+// app.get("/admin_tasks/:id", function (req, res) {
+
+//     const id = req.params.id;
+
+//     pool.query("SELECT * from tasks WHERE id=?", [id], function (err, data) {
+//         if (err) return console.log(err);
+
+//         res.json(data);
+//     });
+// });
+
+//  редактировать задачу в роли администратора
+// app.post("/admin_tasks/:id", function (req, res) {
+
+//     let description = req.body.description;
+//     let skills = req.body.address;
+//     let type = req.body.type;
+//     let maxAmount = req.body.maxAmount;
+//     const id = req.body.id;
+
+//     pool.query("UPDATE task SET description=?, skills=?, type=?, maxAmount=?  WHERE id=?", [description, skills, type, maxAmount, id], function (err, data) {
+//         if (err) return console.log(err);
+
+//         res.json(data);
+//     });
+// });
+
+// удалить отзыв в роли администратора
+app.delete("/admin_feedback/:id", function (req, res) {
 
     const id = req.params.id;
 
-    pool.query("SELECT * from tasks WHERE id=?", [id], function (err, data) {
+    pool.query("DELETE FROM review WHERE id=?", [id], function (err, data) {
         if (err) return console.log(err);
 
-        res.json(data);
-    });
-});
-
-// редактировать задачу в роли администратора
-app.post("/admin_tasks/:id", function (req, res) {
-
-    let description = req.body.description;
-    let skills = req.body.address;
-    let type = req.body.type;
-    let maxAmount = req.body.maxAmount;
-    const id = req.body.id;
-
-    pool.query("UPDATE task SET description=?, skills=?, type=?, maxAmount=?  WHERE id=?", [description, skills, type, maxAmount, id], function (err, data) {
-        if (err) return console.log(err);
-
+        console.log(data);
         res.json(data);
     });
 });

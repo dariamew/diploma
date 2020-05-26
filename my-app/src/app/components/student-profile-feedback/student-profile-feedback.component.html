@@ -1,11 +1,7 @@
 <div class="container">
-        <div class="feedback-element" *ngFor="let feedbackElement of feedbackData">
-            <div class="name-and-mark">
-                <p class="name-element">{{feedbackElement.name}}</p>
-                <p>Оценка: {{feedbackElement.mark}}</p>
-            </div>
-            <p class="date-element">{{feedbackElement.date}}</p>
+        <div class="feedback-element" *ngFor="let feedbackElement of feedback">
+                <p class="mark">Оценка: {{feedbackElement.mark}}</p>
             <p>{{feedbackElement.text}}</p>
-            <p class="status-element">{{feedbackElement.status}}</p>
+            <p class="status-element">{{feedbackElement.isCompleted}}</p>
         </div>
 </div>

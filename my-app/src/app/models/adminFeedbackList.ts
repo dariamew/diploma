@@ -1,5 +1,5 @@
-export interface FeedbackModel {
-    id: string;
+export interface AdminFeedbackModel {
+    id: number;
     mark: number;
     text: string;
     isCompleted?: string;

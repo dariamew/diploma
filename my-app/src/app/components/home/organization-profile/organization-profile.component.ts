@@ -6,6 +6,7 @@ import { OrganizationServiceService } from 'src/app/services/userServices/organi
 import { AuthService } from 'src/app/services/auth.service';
 import { TaskModel } from '../../../models/taskModel';
 import { StudentServiceService } from 'src/app/services/userServices/student/student-service.service';
+import { FeedbackList } from 'src/app/models/feedbackList';
 
 @Component({
   selector: 'app-organization-profile',
@@ -16,12 +17,7 @@ export class OrganizationProfileComponent implements OnInit {
 
   organization : Organization;
   task : TaskModel[] = [];
-
-  feedbackData = [
-    { name: "Студент", date: "21.22.1998", text: "Очень хвалебный отзыв о работе",  },
-    { name: "Другой студент", date: "21.22.1998", text: "Очень хвалебный отзыв о работе",  },
-    { name: "Третий студент", date: "21.22.1998", text: "Очень хвалебный отзыв о работе", }
-  ]
+  feedback: FeedbackList[] = [];
 
   constructor(private activatedRoute: ActivatedRoute, private organizationService: OrganizationServiceService, private authService: AuthService, 
     public router: Router, private studentService: StudentServiceService) { }
@@ -38,7 +34,10 @@ export class OrganizationProfileComponent implements OnInit {
       tap(organization => this.organization = organization),
       tap(organization => this.organizationService.getTasks(organization.id).subscribe(result => {
         this.task = result;
-      }))
+      })),
+      tap(organization => this.organizationService.getFeedback(organization.id).subscribe(result => {
+        this.feedback = result;
+      })),
     ).subscribe();
   }
 

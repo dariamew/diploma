@@ -10,21 +10,11 @@
     margin-right: auto;
     font-size: 12px;
 }
-.date-element {
-    margin-top: -10px;
-    margin-bottom: 20px;
-    font-size: 12px;
-    font-weight: 300;
-}
-.name-and-mark {
-    display: flex;
-    justify-content: space-between;
-}
-.name-element {
-    font-weight: 500;
+.mark {
+    color: #FF4D00;
 }
 .status-element {
-    margin-top: 50px;
+    margin-top: 22px;
     font-weight: 300;
 }
 .title {

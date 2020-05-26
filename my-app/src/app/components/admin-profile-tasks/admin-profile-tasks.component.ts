@@ -26,10 +26,5 @@ export class AdminProfileTasksComponent implements OnInit {
       console.log(data);
     });
    }
-   
-//   editTask(id : number) {
-//     this.adminService.editTask(id).subscribe(data => {
-//       console.log(data);
-//     });;
-//  }
+
 }

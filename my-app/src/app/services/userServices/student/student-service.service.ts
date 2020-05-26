@@ -10,6 +10,7 @@ import { EditStudentModel } from '../../../models/editStudentModel';
 import { SkillsModel } from 'src/app/models/skillsModel';
 import { RequestionList } from 'src/app/models/requestionList';
 import { FeedbackModel } from 'src/app/models/feedbackModel';
+import { FeedbackList } from 'src/app/models/feedbackList';
 
 @Injectable({
   providedIn: 'root'
@@ -63,6 +64,10 @@ export class StudentServiceService {
 
   sendFeedback(feedbackData: FeedbackModel): Observable<FeedbackModel> {
     return this.httpClient.post<FeedbackModel>('http://localhost:8080/student_feedback', feedbackData);
+  }
+
+  getFeedback(id: number): Observable<FeedbackList[]> {
+    return this.httpClient.get<FeedbackList[]>('http://localhost:8080/student_feedback_list/' + id);
   }
 
 }

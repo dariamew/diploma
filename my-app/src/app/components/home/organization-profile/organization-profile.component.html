@@ -22,7 +22,6 @@
                 <p ><span class="task-text">Навыки</span> <br> {{taskElement.skills}}</p>
                 <p><span class="task-text">Тип</span> <br> {{taskElement.type}}</p>
                 <p ><span class="task-text">Количество мест</span> <br> {{taskElement.maxAmount}}</p>
-                <p >{{taskElement.id}}</p>
             </div>
             <div class="button-container">
                 <button class="button small" (click)="sendRequest(taskElement.id)">Откликнуться</button>
@@ -31,9 +30,8 @@
 </div>
 <div>
     <p class="title">Отзывы</p>
-        <div class="feedback-container" *ngFor="let feedbackElement of feedbackData">
-            <p class="feedback-name">{{feedbackElement.name}}</p>
-            <p class="feedback-date">{{feedbackElement.date}}</p>
+        <div class="feedback-container" *ngFor="let feedbackElement of feedback">
+            <p class="mark">Оценка: {{feedbackElement.mark}}</p>
             <p>{{feedbackElement.text}}</p>
         </div>
 </div>

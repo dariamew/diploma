@@ -11,19 +11,13 @@ export class HeaderComponent implements OnInit {
 
   counter : Counter;
 
-  isShow = false;
-
   constructor(private counterService: CounterService) { }
 
   ngOnInit(): void {
     this.counterService.getCounter().subscribe(result => {
-      this.counter = result[0];
+      this.counter = result;
       console.log(this.counter);
     }, error => console.log(error));
-  }
-
-  toggleMenu() {
-    this.isShow = !this.isShow;
   }
  
 }

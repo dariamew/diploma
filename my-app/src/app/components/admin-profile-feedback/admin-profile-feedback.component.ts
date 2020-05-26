@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AdminServiceService } from 'src/app/services/userServices/admin/admin-service.service';
+import { ActivatedRoute } from '@angular/router';
+import { AdminFeedbackModel } from 'src/app/models/adminFeedbackList';
 
 @Component({
   selector: 'app-admin-profile-feedback',
@@ -8,15 +10,21 @@ import { AdminServiceService } from 'src/app/services/userServices/admin/admin-s
 })
 export class AdminProfileFeedbackComponent implements OnInit {
 
-  feedbackData = [
-    { name: "Ростелеком", mark: "5", date: "21.22.1998", text: "Очень хвалебный отзыв о работе", status: "Успешно пройдено" },
-    { name: "Ростелеком", mark: "5", date: "21.22.1998", text: "Очень хвалебный отзыв о работе", status: "Успешно пройдено" },
-    { name: "Ростелеком", mark: "5", date: "21.22.1998", text: "Очень хвалебный отзыв о работе", status: "Успешно пройдено" }
-  ]
-  
-  constructor(private adminService : AdminServiceService) { }
+  feedback: AdminFeedbackModel[] = [];
+
+  constructor(private adminService : AdminServiceService, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
+
+    this.adminService.getAllFeedback().subscribe(result => {
+      this.feedback = result;
+    }, error => console.log(error));
   }
+
+  deleteFeedback(id : number) {
+    this.adminService.deleteFeedback(id).subscribe(data => {
+      console.log(data);
+    });
+   }
 
 }

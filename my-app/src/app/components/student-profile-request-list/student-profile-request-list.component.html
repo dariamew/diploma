@@ -1,10 +1,10 @@
 <p class="title">Список отправленных заявок</p>
 <div class="task-container" *ngFor="let requestion of requestions">
     <p class="requestion-number">Номер вашей заявки: {{requestion.id}} </p>
-    <p class="requestion-number">Статус вашей заявки: {{requestion.stateId}} </p>
+    <p class="requestion-number" data-tooltip="1 - на расcмотрении, 2 - отклонена, 3 - принята">Статус вашей заявки: {{requestion.stateId}} </p>
     <a class="link-style" [routerLink]="['/organization', requestion.organizationId]">Перейти к профилю организации</a>
         <div class="button-container">
             <button class="button small" (click)="deleteRequestion(requestion.id)">Удалить</button>
-            <a class="button small" [routerLink]="['/student_feedback', requestion.studentId]">Оставить отзыв</a>
+            <a class="button small" [routerLink]="['/student_feedback', requestion.organizationId]">Оставить отзыв</a>
         </div>
 </div>

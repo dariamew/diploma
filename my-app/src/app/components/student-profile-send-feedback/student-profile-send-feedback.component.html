@@ -1,6 +1,6 @@
 <div class="form-container">
     <h2 class="form-title">Отзыв</h2>
-    <form [formGroup]="newFeedbackFormGroup" (onSubmit)="onSubmit()">
+    <form [formGroup]="newFeedbackFormGroup" (ngSubmit)="onSubmit(id)">
         <div class="input-container">
         <label for="mark">Оценка</label>
         <input id="mark" formControlName="mark">

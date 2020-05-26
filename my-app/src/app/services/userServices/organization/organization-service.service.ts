@@ -11,6 +11,8 @@ import { NewTaskModel } from 'src/app/models/newTaskModel';
 import { TaskModel } from '../../../models/taskModel'
 import { EditTaskModel } from 'src/app/models/editTaskModel';
 import { RequestionList } from 'src/app/models/requestionList';
+import { FeedbackModel } from 'src/app/models/feedbackModel';
+import { FeedbackList } from 'src/app/models/feedbackList';
 
 @Injectable({
   providedIn: 'root'
@@ -84,6 +86,14 @@ export class OrganizationServiceService {
   rejectRequestion(id: number) {
     return this.httpClient.post('http://localhost:8080/reject_requestion', {id: id});
 
+  }
+
+  sendFeedback(feedbackData: FeedbackModel): Observable<FeedbackModel> {
+    return this.httpClient.post<FeedbackModel>('http://localhost:8080/organization_feedback', feedbackData);
+  }
+
+  getFeedback(id: number): Observable<FeedbackList[]> {
+    return this.httpClient.get<FeedbackList[]>('http://localhost:8080/organization_feedback_list/' + id);
   }
 
 }

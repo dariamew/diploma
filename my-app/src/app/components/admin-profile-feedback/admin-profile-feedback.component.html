@@ -1,12 +1,13 @@
 <div class="container">
-    <h2 class="title">Список отзывов</h2>
-    <div class="feedback-element" *ngFor="let feedbackElement of feedbackData">
+    <p class="title">Список отзывов</p>
+    <div class="feedback-element" *ngFor="let feedbackElement of feedback">
         <div class="name-and-mark">
-            <p class="name-element">{{feedbackElement.name}}</p>
-            <p>Оценка: {{feedbackElement.mark}}</p>
+            <p class="mark">Номер отзыва: {{feedbackElement.id}}</p>
+            <p class="mark">Оценка: {{feedbackElement.mark}}</p>
         </div>
-        <p class="date-element">{{feedbackElement.date}}</p>
+        <p class="date-element"></p>
         <p>{{feedbackElement.text}}</p>
-        <p class="status-element">{{feedbackElement.status}}</p>
+        <p class="status-element">{{feedbackElement.isCompleted}}</p>
+        <button class="button small" (click)="deleteFeedback(feedbackElement.id)">Удалить</button>
     </div>
 </div>

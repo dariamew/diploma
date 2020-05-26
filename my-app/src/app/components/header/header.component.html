@@ -1,6 +1,6 @@
 <div>    
     <nav> 
-        <div class="counter"><span class="counter-result">{{counter.count}}<br>пользователей</span></div>
+        <div class="counter"><span class="counter-result">{{counter}}<br>пользователей</span></div>
         <div class="lists-block">
             <a class="link-style" routerLink="/organization_list">Для студентов</a>
             <a class="link-style" routerLink="/student_list">Для предприятий</a>
@@ -10,34 +10,4 @@
             <span class="registration-style"><a class="registration-link" routerLink="/signup">Регистрация</a></span>
         </div>
     </nav>
-   <!--  <nav *ngIf="student">
-        <div class="counter">Счетчик</div>
-        <div class="lists-block">
-            <a class="link-style">Для студентов</a>
-        </div>
-        <div class="user-block">
-            <span class="registration-style"><a class="registration-link" (click)="toggleMenu()">Меню</a></span>
-            <ul [hidden]="isShow">
-                <li><a>Редактировать</a></li>
-                <li><a>Приглашения</a></li>
-                <li><a>Заявки</a></li>
-                <li><a>Выход</a></li>
-            </ul>
-        </div>
-    </nav> -->
-    <!-- <nav *ngIf="organization">
-        <div class="counter">Счетчик</div>
-        <div class="lists-block">
-            <a class="link-style">Для предприятий</a>
-        </div>
-        <div class="user-block">
-            <span class="registration-style"><a class="toggleMenu()">Меню</a></span>
-            <ul [hidden]="isShow">
-                <li><a>Редактировать</a></li>
-                <li><a>Задачи</a></li>
-                <li><a>Заявки</a></li>
-                <li><a>Выход</a></li>
-            </ul>
-        </div>
-    </nav> -->
 </div>

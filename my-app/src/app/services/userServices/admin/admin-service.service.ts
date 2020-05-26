@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { observable, Observable } from 'rxjs';
 import { TaskModel } from '../../../models/taskModel';
+import { AdminFeedbackModel } from 'src/app/models/adminFeedbackList';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -17,11 +19,12 @@ export class AdminServiceService {
     return this.httpClient.delete<TaskModel[]>('http://localhost:8080/admin_tasks/' + id);
   }
 
-  // editTask(id: number): Observable<TaskModel[]> {
-  //    return this.httpClient.put<TaskModel[]>('http://localhost:8080/admin_tasks/' + id);
-  //  }
-  // getAllFeedback(): Observable<OrganizationModel[]> {
-  //   return this.hhtpClient.get<OrganizationModel[]>('http://localhost:8080/admin_feedback');
-  // }
+  getAllFeedback(): Observable<AdminFeedbackModel[]> {
+    return this.httpClient.get<AdminFeedbackModel[]>('http://localhost:8080/admin_feedback');
+  }
+
+  deleteFeedback(id : number): Observable<AdminFeedbackModel[]> {
+    return this.httpClient.delete<AdminFeedbackModel[]>('http://localhost:8080/admin_feedback/' + id);
+  }
   
 }
